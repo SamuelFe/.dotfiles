@@ -12,8 +12,11 @@ b_CGSC=" \033[1;32m"                                # bold success color
 b_CRER=" \033[1;31m"                                # bold error color
 b_CWAR=" \033[1;33m"                                # bold warning color
 
+### VARIABLES
+FULL_INSTALLATON=true
+
 ### ARRAYS
-declare -a OFFICIAL_packages=(
+declare -a OFFICIAL_packages_essencial=(
     "xorg"
     "xorg-xinit"
     "xorg-xprop"
@@ -24,7 +27,6 @@ declare -a OFFICIAL_packages=(
     "picom"
     "neovim"
     "alacritty"
-    "base-devel"
     "i3-gaps"
     "dmenu"
     "qutebrowser"
@@ -36,25 +38,18 @@ declare -a OFFICIAL_packages=(
     "ffmpeg"
     "vifm"
     "python-pip"
-    "libreoffice-fresh"
     "rofi"
     "flameshot"
-    "code"
     "papirus-icon-theme"
     "noto-fonts-emoji"
-    "grub-customizer"
-    "telegram-desktop"
-    "discord"
     "audacious"
     "starship"
     "dunst"
     "npm"
     "pulseaudio"
     "youtube-dl"
-    "vlc"
     "mpv"
     "mpd"
-    "nautilus"
     "hwinfo"
     "acpi"
     "mlocate"
@@ -63,6 +58,17 @@ declare -a OFFICIAL_packages=(
     "xwallpaper"
     "lxappearance"
     "qt5ct"
+)
+
+declare -a OFFICIAL_packages_not_essential=(
+    "base-devel"
+    "libreoffice-fresh"
+    "telegram-desktop"
+    "discord"
+    "grub-customizer"
+    "code"
+    "vlc"
+    "nautilus"
 )
 
 declare -a DMENU_scripts_dependencies=(
@@ -84,7 +90,7 @@ declare -a TOTORO_scripts_dependencies=(
     "cmus"
 )
 
-declare -a AUR_packages=(
+declare -a AUR_packages_essential=(
     "brave-bin"
     "nerd-fonts-mononoki"
     "nerd-fonts-ubuntu-mono"
@@ -92,12 +98,15 @@ declare -a AUR_packages=(
     "nerd-fonts-victor-mono"
     "ttf-iosevka"
     "polybar"
-    "notion-app"
     "i3lock-color"
-    "xava-git"
     "sublime-text-4"
     "nordic-theme"
     "wget"
+)
+
+declare -a AUR_packages_not_essential=(
+    "notion-app"
+    "xava-git"
 )
 
 declare -a NPM_packages=(
@@ -204,7 +213,22 @@ askForScriptProcedure
 
 ## GENERAL PACKAGES FROM OFFICIAL REPOSITORIES
 prompt -i "\n\t**************************************************\n\t* Installing packages from official repositories *\n\t**************************************************"
-sudo pacman -S ${OFFICIAL_packages[@]}
+prompt -w "\n\t1) FULL installation\n\t2) MINIMAL installation"
+read -r -p "Please select an option: [default=1] " response
+case $response in
+    2)
+        FULL_INSTALLATION=false
+        echo "Minimal installation chosen..."
+        sudo pacman -S ${OFFICIAL_packages_essential[@]}
+        ;;
+    *)
+        FULL_INSTALLATION=true
+        echo "Full installation chosen..."
+        sudo pacman -S ${OFFICIAL_packages_essential[@]}
+        sudo pacman -S ${OFFICIAL_packages_not_essential[@]}
+        ;;
+esac
+
 askForScriptProcedure
 
 
@@ -242,7 +266,12 @@ yay --save --answerclean All --answerdiff None
 askForScriptProcedure
 
 prompt -i "\n\t********************************\n\t* Installing unofficial packages *\n\t********************************"
-yay -S ${AUR_packages[@]}
+if $FULL_INSTALLATION ; then
+    yay -S ${AUR_packages_essential[@]}
+    yay -S ${AUR_packages_not_essential[@]}
+else
+    yay -S ${AUR_packages_essential[@]}
+fi
 # if xava doesn't work, run yay -S 'xava-git' again
 
 sudo npm install -g ${NPM_packages[@]}
@@ -255,16 +284,16 @@ prompt -w "\n\t1) Nvidia drivers\n\t2) Virtual Box\n\t3) None"
 read -r -p "Please select an option: [default=1] " response
 case $response in
     2)
-        sudo pacman -S xf86-video-fbdev virtualbox-guest-utils xf86-video-vmware
         echo "Installing VBox utils..."
+        sudo pacman -S xf86-video-fbdev virtualbox-guest-utils xf86-video-vmware
         ;;
     3)
         echo "No drivers installed"
         ;;
     *)
+        echo "Installing nvidia..."
         sudo pacman -S --noconfirm nvidia nvidia-utils
         nvidia-xconfig
-        echo "Installing nvidia..."
         ;;
 esac
 
@@ -305,7 +334,8 @@ errorNoteTaking
 
 ## Post packages stow
 prompt -i "\n\t****************************************************\n\t* Placing post inicial packages installation files *\n\t****************************************************"
-(cd ~/.dotfiles/ && sudo stow --target="/" PostFiles)
+
+(cd ~/.dotfiles/PostFiles && sudo stow --target="/" *)
 
 sudo fc-cache -fv # for refreshing the font cache 
 
