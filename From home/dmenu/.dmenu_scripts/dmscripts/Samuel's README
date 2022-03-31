@@ -1,0 +1,9 @@
+Primeiro faça as alterações das configs e scripts aqui
+
+Depois teste executando os scripts daqui
+
+Caso tudo ocorra corretamente, substitua os scripts ou configs em "/usr/bin/" pelos modificados
+
+Teste os scripts "globais" pelo dmenu
+
+Caso tudo certo, pode deletar os arquivos de configs e scripts em /dmscripts/.

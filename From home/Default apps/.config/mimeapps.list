@@ -1,0 +1,5 @@
+[Default Applications]
+x-scheme-handler/notion=notion-app.desktop
+
+[Added Associations]
+text/plain=sublime_text.desktop;

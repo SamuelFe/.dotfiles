@@ -1,0 +1,16 @@
+{
+  "segments": [
+    "virtual_env",
+    "hostname",
+    "ssh",
+    "cwd",
+    "git",
+    "hg",
+    "jobs",
+    "root"
+  ],
+  "cwd": {
+    "max_depth": 2
+  },
+  "theme": "~/.config/powerline-shell/themes/samuel_nord.py"
+}

@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/samuel'
+let g:netrw_dirhist_5='/home/samuel/.dmenu_scripts/dmscripts/config'
+let g:netrw_dirhist_4='/home/samuel/.config'
+let g:netrw_dirhist_3='/home/samuel/qutebrowser'
+let g:netrw_dirhist_2='/home/samuel/.config/dmscripts'
+let g:netrw_dirhist_1='/home/samuel/.dmenu_scripts'

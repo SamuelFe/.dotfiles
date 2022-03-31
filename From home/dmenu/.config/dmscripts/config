@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+
+# shellcheck disable=SC2034
+# This issue is ignored because it is part of a larger file that calls upon all variables listed
+
+
+# Defined variables, modify anything in quotes to your prefered software
+
+# DMENU="dmenu"
+DMENU="rofi -dmenu -location 1"
+
+# DMBROWSER="brave-browser"
+DMBROWSER="qutebrowser"
+
+# DMTERM="konsole -e"
+DMTERM="alacritty -e"
+
+DMEDITOR="${DMTERM} nvim"
+# DMEDITOR="emacsclient -c -a emacs"
+
+# dm-logout
+# logout_locker='loginctl lock-session' # this worked for Kubuntu 20.01
+# logout_locker='dm-tool lock'
+logout_locker='.config/Scripts/i3lock/launch.sh'
+
+# dm-bookman 
+# bookman_show_source=1
+
+# ambient_sounds script
+sounds_dir="${HOME}/Music/Ambient\ Sounds"
+
+# dm-setbg
+# setbg_dir="${HOME}/.wallpapers"
+
+# dm-maim
+# maim_dir="${HOME}/Screenshots"
+# maim_file_prefix="maim"
+
+# bookmarks
+declare -A bookmarks_list
+bookmarks_list[no - Notion]="https://www.notion.so/samuelfernandes/Action-Zone-e59b5f939ec34890b577b24a9b2d1525"
+bookmarks_list[yt - YouTube]="https://youtube.com"
+bookmarks_list[md - Moodle]="https://moodle.ufsc.br"
+bookmarks_list[gp - Moodle Grupos]="https://grupos.moodle.ufsc.br"
+bookmarks_list[dr - Google Drive]="https://drive.google.com"
+bookmarks_list[comm - Command Zone]="https://www.notion.so/samuelfernandes/Command-Center-6af9a5243db9466baa42791070f561bc"
+bookmarks_list[speed - Speed Test]="https://www.speedtest.net/"
+
+
+# confedit script
+confedit_editor="$DMEDITOR"
+declare -A confedit_list
+confedit_list[alacritty]="$HOME/.config/alacritty/alacritty.yml"
+confedit_list[bash]="$HOME/.bashrc"
+confedit_list[dmenu scripts]="$HOME/.config/dmscripts/config"
+confedit_list[dunst]="$HOME/.config/dunst/dunstrc"
+confedit_list[i3]="$HOME/.config/i3/config"
+confedit_list[mpv]="$HOME/.config/mpv/mpv.conf"
+confedit_list[neovim]="$HOME/.config/nvim/init.vim"
+confedit_list[polybar]="$HOME/.config/polybar/config_i3.ini"
+confedit_list[powerline]="$HOME/.config/powerline-shell/config.json"
+confedit_list[qutebrowser]="$HOME/.config/qutebrowser/config.py"
+confedit_list[starship]="$HOME/.config/starship.toml"
+
+
+# translate script config
+# Get language codes from here: https://github.com/TheDavidDelta/lingva-translate/blob/main/utils/languages.json
+declare -A lang_map
+lang_map[All]=all
+lang_map[Automatic]=auto
+lang_map[French]=fr
+lang_map[English]=en
+lang_map[Portuguese]=pt
+
+declare -A translation_list
+translation_list[All]=all
+translation_list[Automatic]=auto
+translation_list[Portuguese -> French]="pt -> fr"
+translation_list[Portuguese -> English]="pt -> en"
+translation_list[French -> Portuguese]="fr -> pt"
+translation_list[English -> Portuguese]="en -> pt"
+
+_revision=17
