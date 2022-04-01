@@ -16,7 +16,7 @@ b_CWAR=" \033[1;33m"                                # bold warning color
 FULL_INSTALLATON=true
 
 ### ARRAYS
-declare -a OFFICIAL_packages_essencial=(
+declare -a OFFICIAL_packages_essential=(
     "xorg"
     "xorg-xinit"
     "xorg-xprop"

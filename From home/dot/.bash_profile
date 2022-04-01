@@ -38,4 +38,10 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # NECESSARY FOR QT5CT
 export QT_QPA_PLATFORMTHEME=qt5ct
 
+# OTHER VARIABLES
+export EDITOR=nvim
+export DESKTOP_SESSION=i3
+export SUDO_EDITOR=/usr/bin/nvim
+
+
 [[ $(fgconsole 2>/dev/null) == 1 ]] && exec startx -- vt1

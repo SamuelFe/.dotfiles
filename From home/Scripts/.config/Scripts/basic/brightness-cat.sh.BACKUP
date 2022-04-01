@@ -23,7 +23,7 @@ case $1 in
     # echo $NEW_BRI
     if ((NEW_BRI < MAX_BRI)); then
         # echo "set.."
-        echo $NEW_BRI > /sys/class/backlight/intel_backlight/brightness
+        echo $NEW_BRI | tee /sys/class/backlight/intel_backlight/brightness
         if ((NEW_PER > 80)); then
             dunstify -a "Brightness" \
                 "Brightness" \
@@ -76,7 +76,7 @@ case $1 in
         fi
     else
         # echo "not set.."
-        echo $MAX_BRI > /sys/class/backlight/intel_backlight/brightness
+        echo $MAX_BRI | tee /sys/class/backlight/intel_backlight/brightness
         dunstify -a "Brightness" \
                 "Brightness" \
                 "Increase \nBrightness: " \
@@ -91,7 +91,7 @@ case $1 in
     # echo $NEW_BRI
     if ((NEW_BRI > MIN_BRI)); then
         # echo "set.."
-        echo $NEW_BRI > /sys/class/backlight/intel_backlight/brightness
+        echo $NEW_BRI | tee /sys/class/backlight/intel_backlight/brightness
         if ((NEW_PER > 80)); then
             dunstify -a "Brightness" \
                 "Brightness" \
@@ -144,7 +144,7 @@ case $1 in
         fi
     else
         # echo "not set.."
-        echo $MIN_BRI > /sys/class/backlight/intel_backlight/brightness
+        echo $MIN_BRI | tee /sys/class/backlight/intel_backlight/brightness
         dunstify -a "Brightness" \
                 "Brightness" \
                 "Decrease \nBrightness: " \

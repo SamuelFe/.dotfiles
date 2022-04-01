@@ -61,6 +61,7 @@ confedit_list[polybar]="$HOME/.config/polybar/config_i3.ini"
 confedit_list[powerline]="$HOME/.config/powerline-shell/config.json"
 confedit_list[qutebrowser]="$HOME/.config/qutebrowser/config.py"
 confedit_list[starship]="$HOME/.config/starship.toml"
+confedit_list[vifm]="$HOME/.config/vifm/vifmrc"
 
 
 # translate script config

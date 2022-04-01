@@ -42,3 +42,9 @@ fi
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export QT_QPA_PLATFORMTHEME=qt5ct
+
+# OTHER VARIABLES
+export EDITOR=nvim
+export DESKTOP_SESSION=i3
+export SUDO_EDITOR=/usr/bin/nvim
+
