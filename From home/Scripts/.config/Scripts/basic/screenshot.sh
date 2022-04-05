@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR="$HOME/Scripts/basic/icons"
+DIR="$HOME/.config/Scripts/basic/icons"
 
 case "$1" in
 "-screen")

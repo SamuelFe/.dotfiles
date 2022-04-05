@@ -28,7 +28,7 @@ fi
 
 MUTE=$(getmutestat)
 VOL=$(getdefaultsinkvol)
-DIR="$HOME/Scripts/basic/cat"
+DIR="$HOME/.config/Scripts/basic/cat"
 STEP=5
 
 case "$1" in
@@ -58,7 +58,7 @@ case "$1" in
                 "Volume" \
                 "Increase \nVolume: " \
                 -h int:value:$NEWVOL \
-                -i $HOME/Scripts/basic/cat/audio-volume-medium-symbolic.svg \
+                -i $DIR/audio-volume-medium-symbolic.svg \
                 -r 100
         else
             dunstify -a "Volume" \
@@ -104,7 +104,7 @@ case "$1" in
                 "Volume" \
                 "Decrease \nVolume: " \
                 -h int:value:$NEWVOL \
-                -i $HOME/Scripts/basic/cat/audio-volume-medium-symbolic.svg \
+                -i $DIR/audio-volume-medium-symbolic.svg \
                 -r 100
         else
             dunstify -a "Volume" \
@@ -146,7 +146,7 @@ case "$1" in
                 "Volume" \
                 "Current \nVolume: " \
                 -h int:value:$VOL \
-                -i $HOME/Scripts/basic/cat/audio-volume-medium-symbolic.svg \
+                -i $DIR/audio-volume-medium-symbolic.svg \
                 -r 100
         else
             dunstify -a "Volume" \

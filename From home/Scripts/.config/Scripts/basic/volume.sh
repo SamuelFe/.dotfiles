@@ -28,7 +28,7 @@ fi
 
 MUTE=$(getmutestat)
 VOL=$(getdefaultsinkvol)
-DIR="$HOME/Scripts/basic/icons"
+DIR="$HOME/.config/Scripts/basic/icons"
 
 case "$1" in
 -inc)

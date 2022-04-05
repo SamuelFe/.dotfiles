@@ -7,7 +7,7 @@ CURRENT_SOURCE=$(pactl info | grep "Default Source" | cut -f3 -d" ")
 
 OUT=$(pactl list sources | grep -A 10 "$CURRENT_SOURCE")
 CHECK="Mute: yes"
-DIR="$HOME/Scripts/basic/icons"
+DIR="$HOME/.config/Scripts/basic/icons"
 
 if [[ "$OUT" == *"$CHECK"* ]]; then
     # echo "MUTE"

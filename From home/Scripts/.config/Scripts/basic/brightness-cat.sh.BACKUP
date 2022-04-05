@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR="$HOME/Scripts/basic/cat"
+DIR="$HOME/.config/Scripts/basic/cat"
 
 MAX_BRI=$(cat /sys/class/backlight/intel_backlight/max_brightness)
 CUR_BRI=$(cat /sys/class/backlight/intel_backlight/brightness)

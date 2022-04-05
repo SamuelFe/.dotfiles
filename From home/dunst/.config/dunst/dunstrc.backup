@@ -1,5 +1,5 @@
 [global]
-    font = JetBrains Mono 12
+    font = JetBrains Mono 10
     # Allow a small subset of html markup:
     #   <b>bold</b>
     #   <i>italic</i>
@@ -22,7 +22,7 @@
     # %n progress value without any extra characters
     # %% Literal %
     # Markup is allowed
-    format = "<b>%a</b>\n<i>%s</i>%p %n\n%b"
+qutebrowserformat = "<b>%a</b>\n<i>%s</i>%p %n\n%b"
     
     # Sort messages by urgency.
     sort = yes
@@ -143,12 +143,12 @@
     dmenu = rofi -dmenu -theme ~/.config/rofi/rofi-dunst/theme.rasi -p "open"
     
     # Browser for opening urls in context menu.
-    browser = firefox
+    browser = qutebrowser
 
     # Align icons left/right/off
     icon_position = left
-    min_icon_size = 100
-    max_icon_size = 100
+    min_icon_size = 30
+    max_icon_size = 30
     # Paths to default icons.
     #icon_folders = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/
     icon_folders = /usr/share/icons/Papirus-Dark/24x24/actions:/usr/share/icons/Papirus/24x24/animations:/usr/share/icons/Papirus/24x24/apps:/usr/share/icons/Papirus/24x24/categories:/usr/share/icons/Papirus/24x24/devices:/usr/share/icons/Papirus/24x24/emblems:/usr/share/icons/Papirus/24x24/emotes:/usr/share/icons/Papirus/24x24/mimetypes:/usr/share/icons/Papirus/24x24/panel:/usr/share/icons/Papirus/24x24/places:/usr/share/icons/Papirus/24x24/status
@@ -307,10 +307,10 @@
 #    background = "#2F899E"
 #    foreground = "#FFA247"
 #
-#[mute.sh]
-#     appname = mute
-#     category = mute.sound
-#     script = mute.sh
+[mute.sh]
+     appname = mute
+     category = mute.sound
+     script = mute.sh
 #
 #[JDownloader]
 #    appname = JDownloader
@@ -341,14 +341,14 @@
 #      background = "#1f1f1f"
 #      foreground = "#c6c6c6"
 #
-#[CMUS]
-#    appname = CMUS
-#    category = cmus
-#    background = "#6C4AB7"
-#    foreground = "#FFE756"
-#
-#
-#     background = "#30AB70"
-#     foreground = "#F67245"
-#
+[CMUS]
+    appname = CMUS
+    category = cmus
+    background = "#6C4AB7"
+    foreground = "#FFE756"
+
+
+     background = "#30AB70"
+     foreground = "#F67245"
+
 # vim: ft=cfg
