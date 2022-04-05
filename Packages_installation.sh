@@ -107,6 +107,8 @@ declare -a AUR_packages_essential=(
 
 declare -a AUR_packages_not_essential=(
     "notion-app"
+    "spotify"
+    "spicetify-cli"
     "xava-git"
 )
 

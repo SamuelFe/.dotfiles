@@ -71,11 +71,12 @@ for_window [class="xpad"] floating enable
 for_window [class="conky"] floating enable
 for_window [class="Audacious"][title="Album Art"] floating enable 
 for_window [class="Audacious"] floating enable move position center
+for_window [class="Spotify"] floating enable resize set 1000 600 move position center
 for_window [class="wallpaper"] floating enable
 for_window [class="XAVA"] floating enable
 for_window [class="SimpleScreenRecorder"] floating enable
 for_window [class="feh"][title="timetable"] floating enable
-for_window [class="mpv"] floating enable move position center
+for_window [class="mpv"] floating enable resize set 1200 600 move position center
 for_window [class="vlc"] floating enable move position center
 for_window [class="Vlc"] floating enable move position center
 for_window [class="(?i)tint2"] floating enable move position center
@@ -100,7 +101,7 @@ popup_during_fullscreen leave_fullscreen
 # exec_always [--no-startup-id] <command>
 # exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # exec --no-startup-id lxqt-policykit-agent
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
 # exec --no-startup-id copyq
 # exec --no-startup-id xfce4-power-manager
 exec --no-startup-id flameshot
@@ -352,6 +353,9 @@ assign [class="XAVA"] $ws10
 assign [class="(?i)music"] $ws10
 assign [class="vlc"] $ws10
 assign [class="Vlc"] $ws10
+
+# Because didn't worked for Spotify
+for_window [class="Spotify"] move to workspace $ws10 
 
 # reload the configuration file
 bindsym $mod+Shift+c reload; exec notify-send "i3" "Reloaded config" -i reload
