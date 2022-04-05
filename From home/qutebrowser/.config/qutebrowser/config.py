@@ -28,7 +28,7 @@ c.content.tls.certificate_errors = "load-insecurely"
 
 
 ## SETTING DARKMODE
-config.set('colors.webpage.darkmode.enabled', True)
+#config.set('colors.webpage.darkmode.enabled', True)
 
 ## Main window transparency
 # c.window.transparent = True

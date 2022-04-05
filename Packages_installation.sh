@@ -65,6 +65,7 @@ declare -a OFFICIAL_packages_not_essential=(
     "libreoffice-fresh"
     "telegram-desktop"
     "discord"
+    "discocss-git"
     "grub-customizer"
     "code"
     "vlc"
@@ -336,6 +337,7 @@ errorNoteTaking
 prompt -i "\n\t****************************************************\n\t* Placing post inicial packages installation files *\n\t****************************************************"
 
 (cd ~/.dotfiles/PostFiles && sudo stow --target="/" *)
+(cd ~/.dotfiles/FilesToCopy/SDDM && ./copy_files.sh)
 
 sudo fc-cache -fv # for refreshing the font cache 
 

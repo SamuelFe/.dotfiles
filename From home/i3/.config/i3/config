@@ -99,23 +99,21 @@ popup_during_fullscreen leave_fullscreen
 # exec [--no-startup-id] <command>
 # exec_always [--no-startup-id] <command>
 # exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id lxqt-policykit-agent
+# exec --no-startup-id lxqt-policykit-agent
 exec --no-startup-id nm-applet
-exec --no-startup-id copyq
-exec --no-startup-id xfce4-power-manager
+# exec --no-startup-id copyq
+# exec --no-startup-id xfce4-power-manager
 exec --no-startup-id flameshot
 exec --no-startup-id libinput-gestures-setup start
+exec setxkbmap -model abnt2 -layout br -variant abnt2
 # exec --no-startup-id xpad
 # exec --no-startup-id $HOME/.config/Scripts/wallpaper.sh
 # exec --no-startup-id $HOME/.config/Scripts/idleshutdown.sh
 # exec --no-startup-id mpd
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id nitrogen --restore -b
 # exec_always --no-startup-id picom -b
 exec_always --no-startup-id picom --no-vsync -b # did this for working in virtualbox
 exec_always --no-startup-id pkill dunst; sudo dunst
-exec_always setxkbmap -model abnt2 -layout br -variant abnt2
-
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -594,13 +592,12 @@ bindsym $mod+q split toggle;exec notify-send 'Tile horizontally/vertically toggl
 
 
 # to start with i3
-exec xrandr -s 1360x768
-
-# WALLPAPER
-# exec_always feh --bg-scale ~/.kubuntu-wallpaper.png
+# exec xrandr -s 1360x768
 
 # Gaps
 # # You can also use any non-zero value if you'd like to have a border
 for_window [class=".*"] border pixel 2
 
-
+# WALLPAPER
+# exec_always feh --bg-scale ~/.kubuntu-wallpaper.png
+exec --no-startup-id $HOME/.config/Scripts/basic/startup.sh
