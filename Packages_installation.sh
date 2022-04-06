@@ -17,6 +17,8 @@ FULL_INSTALLATON=true
 
 ### ARRAYS
 declare -a OFFICIAL_packages_essential=(
+    "bluez"
+    "bluez-utils"
     "xorg"
     "xorg-xinit"
     "xorg-xprop"

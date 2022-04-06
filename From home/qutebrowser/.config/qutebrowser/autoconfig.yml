@@ -6,7 +6,7 @@
 
 config_version: 2
 settings:
-  content.notifications.enabled:
-    https://studiocustomers.com: false
-    https://triplecheer.com: false
-    https://www.y2mate.com: false
+  content.desktop_capture:
+    https://meet.google.com: true
+  content.media.video_capture:
+    https://meet.google.com: true
