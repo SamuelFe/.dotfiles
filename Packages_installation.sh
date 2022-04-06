@@ -49,6 +49,8 @@ declare -a OFFICIAL_packages_essential=(
     "dunst"
     "npm"
     "pulseaudio"
+    "pulseaudio-alsa"
+    "pulseaudio-bluetooth"
     "youtube-dl"
     "mpv"
     "mpd"
@@ -297,7 +299,7 @@ case $response in
         ;;
     *)
         echo "Installing nvidia..."
-        sudo pacman -S --noconfirm nvidia nvidia-utils
+        sudo pacman -S --noconfirm nvidia nvidia-utils nvidia-settings nvidia-prime
         nvidia-xconfig
         ;;
 esac
