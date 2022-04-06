@@ -340,6 +340,8 @@ prompt -i "\n\t****************************************************\n\t* Placing
 
 (cd ~/.dotfiles/PostFiles && sudo stow --target="/" *)
 (cd ~/.dotfiles/FilesToCopy/SDDM && ./copy_files.sh)
+(cd ~/.dotfiles/FilesToCopy/udisks && ./copy_files.sh)
+(cd ~/.dotfiles/FilesToCopy/xorg && ./copy_files.sh)
 
 sudo fc-cache -fv # for refreshing the font cache 
 
