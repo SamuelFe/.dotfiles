@@ -28,7 +28,7 @@ c.content.tls.certificate_errors = "load-insecurely"
 
 
 ## SETTING DARKMODE
-config.set('colors.webpage.darkmode.enabled', True)
+#config.set('colors.webpage.darkmode.enabled', True)
 
 ## Main window transparency
 # c.window.transparent = True
@@ -66,8 +66,9 @@ config.bind(',Y', 'hint links spawn mpv {hint-url}') #bye-bye youtube ads
 
 
 # SWICHING ; AND :
-# set ';' for opening command prompt
+#set ';' for opening command prompt
 config.bind(';', 'set-cmd-text :')
+
 # set ':' for those hint default bindings
 config.unbind(':')
 config.bind(':I', 'hint images tab')
@@ -85,6 +86,10 @@ config.bind(':o', 'hint links fill :open {hint-url}')
 config.bind(':r', 'hint --rapid links tab-bg')
 config.bind(':t', 'hint inputs')
 config.bind(':y', 'hint links yank')
+
+# Swiching J and K for tab navigation
+config.bind('J', 'tab-prev')
+config.bind('K', 'tab-next')
 
 # ALIASES
 # c.aliases = {
@@ -113,7 +118,7 @@ c.tabs.mode_on_change = "restore"
 
 ## DOWNLOADS
 c.downloads.position = "bottom"
-# c.downloads.remove_finished = 5000
+c.downloads.remove_finished = 10000
 
 ## SPECIFIC URL PATTERNS SETTINGS
 
@@ -125,7 +130,7 @@ c.downloads.position = "bottom"
 # I would like to have Notion always loads in passthrough-mode
 
 # PREVENT YOUTUBE VIDEOS FROM AUTOSTART
-c.content.autoplay = True
+c.content.autoplay = False
 
 # NOTIFICATIONS
 c.content.notifications.enabled = False
@@ -377,6 +382,7 @@ config.set('content.images', True, 'devtools://*')
 # Enable JavaScript.
 # Type: Bool
 config.set('content.javascript.enabled', True, 'chrome-devtools://*')
+config.set('content.javascript.enabled', True, '*://askubuntu.com/*')
 
 # Enable JavaScript.
 # Type: Bool

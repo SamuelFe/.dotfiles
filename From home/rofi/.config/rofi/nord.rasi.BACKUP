@@ -23,7 +23,6 @@ configuration {
 }
 
 * {
-	text-color: #485c85;
 	nord0: #2e3440;
 	nord1: #3b4252;
 	nord2: #434c5e;
@@ -50,11 +49,16 @@ configuration {
     
     highlight:     underline bold #eceff4;
 
-    transparent: rgba(46,52,64,1);
+    transparent: rgba(46,52,64,0);
 }
 
 window {
+    location: center;
+    anchor:   center;
     transparency: "screenshot";
+    padding: 10px;
+    border:  0px;
+    border-radius: 6px;
 
     background-color: @transparent;
     spacing: 0;
@@ -69,16 +73,20 @@ mainbox {
 
 message {
     color: @nord0;
-    padding: 1;
+    padding: 5;
     border-color: @foreground;
-    border:  2px 0px 0px;
+    border:  0px 2px 2px 2px;
     background-color: @nord7;
 }
 
 inputbar {
-    spacing:    0;
     color: @nord6;
+    padding: 11px;
     background-color: #3b4252;
+
+    border: 1px;
+    border-radius:  6px 6px 0px 0px;
+    border-color: @nord10;
 }
 
 entry, prompt, case-indicator {
@@ -91,17 +99,18 @@ prompt {
 }
 
 listview {
-    padding: 2px 0px 0px;
+    padding: 8px;
     border-radius: 0px 0px 6px 6px;
     border-color: @nord10;
-    border: 2px 0px 0px;
-    background-color: rgba(46,52,64,1);
+    border: 0px 1px 1px 1px;
+    background-color: rgba(46,52,64,0.9);
     dynamic: false;
 }
 
 element {
-    padding: 2px 0px 0px;
+    padding: 3px;
     vertical-align: 0.5;
+    border-radius: 4px;
     background-color: transparent;
     color: @foreground;
     text-color: rgb(216, 222, 233);

@@ -24,4 +24,4 @@ dmenu_run \
     -sb "$select_bg" \
     -sf "$select_fg" \
     -fn "$font"-"$font_size"
-	#-l 15\
+	-l 15\

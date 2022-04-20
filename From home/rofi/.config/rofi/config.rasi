@@ -2,5 +2,6 @@ configuration {
 	modi: "bookmarks:~/.config/rofi/rofi-bookmarks/rofi-bookmarks.py";
 	show-icons: true;
 	icon-theme: "WhiteSur-grey-dark";
+    fixed-num-lines: false;
 }
-@theme "./rofi-themes/Official Themes/Arc-Dark.rasi"
+@theme "./nord.rasi"

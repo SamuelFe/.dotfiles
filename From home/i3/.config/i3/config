@@ -50,6 +50,7 @@ for_window [class=".*"] title_format "<b>%title</b>"
 
 # ARBITRARY COMMANDS FOR SPECIFIC WINDOWS (for_window)
 # for_window <criteria> <command>
+for_window [title="Save File"] floating enable resize set 1000 600 move position center 
 for_window [title="File Transfer*"] floating enable move position center
 for_window [class="conky"] border pixel 0 
 for_window [class="Nautilus"] floating enable move position center
@@ -71,7 +72,7 @@ for_window [class="xpad"] floating enable
 for_window [class="conky"] floating enable
 for_window [class="Audacious"][title="Album Art"] floating enable 
 for_window [class="Audacious"] floating enable move position center
-for_window [class="Spotify"] floating enable resize set 1000 600 move position center
+for_window [class="Spotify"] floating enable resize set 1200 600 move position center
 for_window [class="wallpaper"] floating enable
 for_window [class="XAVA"] floating enable
 for_window [class="SimpleScreenRecorder"] floating enable
@@ -143,7 +144,8 @@ bindsym $mod+F3 exec --no-startup-id "~/.config/rofi/rofi-screenshot/rofi-screen
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+Return exec alacritty --working-directory `xcwd`
 
 # kill focused window
@@ -176,14 +178,14 @@ bindsym $mod_next+Tab exec "~/.config/rofi/app-switcher/app-switcher.sh"
 
 # SCREENSHOT WITH FLAMESHOT
 bindsym $mod+Insert exec flameshot gui
+bindsym $mod+Shift+Print --release exec --no-startup-id flameshot gui -p ~/Pictures/Screenshots
+bindsym Print exec --no-startup-id flameshot full -p ~/Pictures/Screenshots
 
 # TOTORO SCREENSHOTS (to test)
 # start the screenshot utility
 # bindsym Print exec --no-startup-id "~/Scripts/basic/screenshot.sh -screen"
 # bindsym $mod+Print --release exec --no-startup-id "~/Scripts/basic/screenshot.sh -select"
 # bindsym $mod+Print --release exec --no-startup-id "~/Scripts/basic/screenshot.sh -select_copy"
-bindsym Print exec --no-startup-id flameshot full -p ~/Pictures/Screenshots
-bindsym $mod+Shift+Print --release exec --no-startup-id flameshot gui -p ~/Pictures/Screenshots
 
 # xkill utility to send kill siginal
 bindsym $mod+Ctrl+x --release exec --no-startup-id notify-send "xkill" "Select an app to kill" -i dialog-error && xkill
@@ -356,6 +358,8 @@ assign [class="Vlc"] $ws10
 
 # Because didn't worked for Spotify
 for_window [class="Spotify"] move to workspace $ws10 
+for_window [class="Minecraft"] move to workspace $ws6
+for_window [class="TLauncher"] move to workspace $ws6
 
 # reload the configuration file
 bindsym $mod+Shift+c reload; exec notify-send "i3" "Reloaded config" -i reload

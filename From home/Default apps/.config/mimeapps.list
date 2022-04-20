@@ -3,3 +3,7 @@ x-scheme-handler/notion=notion-app.desktop
 
 [Added Associations]
 text/plain=sublime_text.desktop;
+application/x-java-archive=org.gnome.Nautilus.desktop;
+image/png=sxiv.desktop;
+image/jpeg=sxiv.desktop;
+application/pdf=org.pwmt.zathura.desktop;

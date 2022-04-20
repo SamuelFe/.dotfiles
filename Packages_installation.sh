@@ -52,6 +52,7 @@ declare -a OFFICIAL_packages_essential=(
     "pulseaudio-alsa"
     "pulseaudio-bluetooth"
     "youtube-dl"
+    "pdfjs"
     "mpv"
     "mpd"
     "hwinfo"
@@ -182,6 +183,10 @@ if [ -f ~/.xinitrc ]; then
    rm ~/.xinitrc 
 fi
 
+if [ -f ~/.config/mimeapps.list ]; then
+   rm ~/.config/mimeapps.list 
+fi
+
 if [ -f /etc/xdg/reflector/reflector.conf ]; then
     sudo mv /etc/xdg/reflector/reflector.conf /etc/xdg/reflector/reflector.conf.BACKUP
 fi
@@ -287,7 +292,7 @@ askForScriptProcedure
 
 # DRIVERS INSTALLATION
 prompt -s "\n\t************************\n\t* Drivers installation *\n\t************************"
-prompt -w "\n\t1) Nvidia drivers\n\t2) Virtual Box\n\t3) None"
+prompt -w "\n\t1) Nvidia + Intel drivers\n\t2) Virtual Box\n\t3) None"
 read -r -p "Please select an option: [default=1] " response
 case $response in
     2)
@@ -298,8 +303,9 @@ case $response in
         echo "No drivers installed"
         ;;
     *)
-        echo "Installing nvidia..."
-        sudo pacman -S --noconfirm nvidia nvidia-utils nvidia-settings nvidia-prime
+        echo "Installing nvidia & intel..."
+        #sudo pacman -S --noconfirm nvidia nvidia-utils nvidia-settings nvidia-prime
+        sudo pacman -S --noconfirm xf86-video-nouveau xf86-video-intel
         nvidia-xconfig
         ;;
 esac

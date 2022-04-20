@@ -2,9 +2,11 @@
  * ROFI Color theme
  * User: leofa
  * Copyright: 2017 leofa
+ * text-color: #d9d7f7;
  ***********************************************/
 
 * {
+    text-color: #a1bfbf;
     selected-normal-foreground:  rgba ( 249, 249, 249, 100 % );
     foreground:                  rgba ( 196, 203, 212, 100 % );
     normal-foreground:           @foreground;

@@ -3,7 +3,7 @@
 theme="default"
 dir="$HOME/.config/rofi/launchers"
 
-rofi -no-lazy-grab -show drun -modi drun -theme $dir/"$theme"
+rofi -fixed-num-lines -no-lazy-grab -show drun -modi drun -theme $dir/"$theme"
 # rofi -no-lazy-grab \
 #     -show drun \
 #     -modi drun \

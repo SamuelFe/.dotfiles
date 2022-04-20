@@ -30,7 +30,9 @@ call vundle#begin('~/.vim/bundle')
 "{{ Syntax Highlighting and Colors }}
     Plugin 'vim-python/python-syntax'                    " Python highlighting
     Plugin 'ap/vim-css-color'                            " Color previews for CSS
-
+"{{ VSCode like achievement }}
+    Plugin 'neoclide/coc.nvim', {'branch': 'release'}    " Completion
+    Plugin 'scrooloose/nerdtree'                         " Tree of directories
 
 call vundle#end()            " required
 
@@ -108,6 +110,32 @@ map <Leader>tv :TabVifm<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:python_highlight_all = 1
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Conquer Of Completion
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:coc_global_extensions = [
+  \ 'coc-snippets',
+  \ 'coc-pairs',
+  \ 'coc-tsserver',
+  \ 'coc-eslint', 
+  \ 'coc-prettier', 
+  \ 'coc-json', 
+  \ ]
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+
 "############## END OF PLUGGINGS CONFIGURATION ###############"
 
 
@@ -159,8 +187,10 @@ let g:rehash256 = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Theming
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-highlight Normal           guifg=#dfdfdf ctermfg=15   guibg=#282c34 ctermbg=none  cterm=none
-highlight LineNr           guifg=#5b6268 ctermfg=8    guibg=#282c34 ctermbg=none  cterm=none
+highlight Normal           guifg=#dfdfdf ctermfg=15   guibg=#1c1f24 ctermbg=none  cterm=none
+"highlight Normal           guifg=#dfdfdf ctermfg=15   guibg=#282c34 ctermbg=none  cterm=none
+highlight LineNr           guifg=#5b6268 ctermfg=8    guibg=#1c1f24 ctermbg=none  cterm=none
+"highlight LineNr           guifg=#5b6268 ctermfg=8    guibg=#282c34 ctermbg=none  cterm=none
 highlight CursorLineNr     guifg=#202328 ctermfg=7    guifg=#5b6268 ctermbg=8     cterm=none
 highlight VertSplit        guifg=#1c1f24 ctermfg=0    guifg=#5b6268 ctermbg=8     cterm=none
 highlight Statement        guifg=#98be65 ctermfg=2    guibg=none    ctermbg=none  cterm=none
@@ -177,7 +207,7 @@ highlight PreProc          guifg=#c678dd ctermfg=5    guibg=none    ctermbg=none
 highlight String           guifg=#3071db ctermfg=12   guibg=none    ctermbg=none  cterm=none
 highlight Number           guifg=#ff6c6b ctermfg=1    guibg=none    ctermbg=none  cterm=none
 highlight Function         guifg=#ff6c6b ctermfg=1    guibg=none    ctermbg=none  cterm=none
-highlight Visual           guifg=#dfdfdf ctermfg=1    guibg=#1c1f24 ctermbg=none  cterm=none
+highlight Visual           guifg=#dfdfdf ctermfg=1    guibg=#5b6268 ctermbg=none  cterm=none
 
 " highlight WildMenu         ctermfg=0       ctermbg=80      cterm=none
 " highlight Folded           ctermfg=103     ctermbg=234     cterm=none
