@@ -21,18 +21,24 @@ call vundle#begin('~/.vim/bundle')
 "call vundle#begin('~/some/path/here')
 
 "{{ The Basics }}
-    Plugin 'VundleVim/Vundle.vim'                        " Let Vundle manage Vundle, required
-    Plugin 'itchyny/lightline.vim'                       " Lightline statusbar
-    Plugin 'instant-markdown/vim-instant-markdown'       " Markdown preview
-    Plugin 'frazrepo/vim-rainbow'                        " Parentheses color matching
+    Plugin 'VundleVim/Vundle.vim'                                  " Let Vundle manage Vundle, required
+    Plugin 'itchyny/lightline.vim'                                 " Lightline statusbar
+    Plugin 'instant-markdown/vim-instant-markdown'                 " Markdown preview
+    Plugin 'frazrepo/vim-rainbow'                                  " Parentheses color matching
+    Plugin 'tpope/vim-surround'                                    " Surround things with {}, <>, (), etc...
 "{{ File Management }}
-    Plugin 'vifm/vifm.vim'                               " Vifm
+    Plugin 'vifm/vifm.vim'                                         " Vifm
 "{{ Syntax Highlighting and Colors }}
-    Plugin 'vim-python/python-syntax'                    " Python highlighting
-    Plugin 'ap/vim-css-color'                            " Color previews for CSS
+    Plugin 'vim-python/python-syntax'                              " Python highlighting
+    Plugin 'ap/vim-css-color'                                      " Color previews for CSS
+    Plugin 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " Highlighting helper   
+    Plugin 'Fymyte/rasi.vim'                                       " Rofi config files colors
 "{{ VSCode like achievement }}
-    Plugin 'neoclide/coc.nvim', {'branch': 'release'}    " Completion
-    Plugin 'scrooloose/nerdtree'                         " Tree of directories
+    Plugin 'neoclide/coc.nvim', {'branch': 'release'}              " Completion
+    Plugin 'scrooloose/nerdtree'                                   " Tree of directories
+    Plugin 'Xuyuanp/nerdtree-git-plugin'                           " Git highlight for NERDTree
+    Plugin 'ryanoasis/vim-devicons'                                " Develeoping icons
+    Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'               " Syntax highlighting for NERDTree
 
 call vundle#end()            " required
 
@@ -66,6 +72,8 @@ let g:lightline = {
       \ 'colorscheme': 'darcula_samuel',
       \ }
 
+let mapleader = ","
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-Instant-Markdown
@@ -73,7 +81,7 @@ let g:lightline = {
 filetype plugin on
 "Uncomment to override defaults:
 let g:instant_markdown_autostart = 0                " Turns off auto preview
-let g:instant_markdown_browser = "qutebrowser"      " Uses surf for preview
+let g:instant_markdown_browser = "qutebrowser"      " Uses qutebrowser for preview
 "let g:instant_markdown_slow = 1
 "let g:instant_markdown_open_to_the_world = 1
 "let g:instant_markdown_allow_unsafe_content = 1
@@ -121,6 +129,7 @@ let g:coc_global_extensions = [
   \ 'coc-eslint', 
   \ 'coc-prettier', 
   \ 'coc-json', 
+  \ 'coc-clangd'
   \ ]
 
 inoremap <silent><expr> <TAB>
@@ -136,14 +145,65 @@ endfunction
 
 let g:coc_snippet_next = '<tab>'
 
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => NERDTree + plugingS
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" Requires in vim-nerdtree-syntax-highlighting's README
+let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
+let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
+
+"let g:NERDTreeDisableFileExtensionHighlight = 1      " somehow this line made it don't work
+let g:NERDTreeDisableExactMatchHighlight = 1
+let g:NERDTreeDisablePatternMatchHighlight = 1
+
+let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+
+let g:NERDTreeGitStatusUseNerdFonts = 1     " Use NerdFonts
+
+" Need to test if works
+let g:NERDTreeGitStatusWithFlags = 1
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:NERDTreeGitStatusNodeColorization = 1
+let g:NERDTreeColorMapCustom = {
+    \ "Staged"    : "#0ee375",  
+    \ "Modified"  : "#d9bf91",  
+    \ "Renamed"   : "#51C9FC",  
+    \ "Untracked" : "#FCE77C",  
+    \ "Unmerged"  : "#FC51E6",  
+    \ "Dirty"     : "#FFBD61",  
+    \ "Clean"     : "#87939A",   
+    \ "Ignored"   : "#808080"   
+    \ }        
+
 "############## END OF PLUGGINGS CONFIGURATION ###############"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set path+=**			" Searches current directory recursively.
-set wildmenu			" Display all matches when tab complete.
+set path+=**		        	" Searches current directory recursively.
+set wildmenu			        " Display all matches when tab complete.
 set incsearch                   " Incremental search
 set hidden                      " Needed to keep multiple buffers open
 set nobackup                    " No auto backups
@@ -188,9 +248,7 @@ let g:rehash256 = 1
 " => Colors and Theming
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 highlight Normal           guifg=#dfdfdf ctermfg=15   guibg=#1c1f24 ctermbg=none  cterm=none
-"highlight Normal           guifg=#dfdfdf ctermfg=15   guibg=#282c34 ctermbg=none  cterm=none
 highlight LineNr           guifg=#5b6268 ctermfg=8    guibg=#1c1f24 ctermbg=none  cterm=none
-"highlight LineNr           guifg=#5b6268 ctermfg=8    guibg=#282c34 ctermbg=none  cterm=none
 highlight CursorLineNr     guifg=#202328 ctermfg=7    guifg=#5b6268 ctermbg=8     cterm=none
 highlight VertSplit        guifg=#1c1f24 ctermfg=0    guifg=#5b6268 ctermbg=8     cterm=none
 highlight Statement        guifg=#98be65 ctermfg=2    guibg=none    ctermbg=none  cterm=none
@@ -208,33 +266,6 @@ highlight String           guifg=#3071db ctermfg=12   guibg=none    ctermbg=none
 highlight Number           guifg=#ff6c6b ctermfg=1    guibg=none    ctermbg=none  cterm=none
 highlight Function         guifg=#ff6c6b ctermfg=1    guibg=none    ctermbg=none  cterm=none
 highlight Visual           guifg=#dfdfdf ctermfg=1    guibg=#5b6268 ctermbg=none  cterm=none
-
-" highlight WildMenu         ctermfg=0       ctermbg=80      cterm=none
-" highlight Folded           ctermfg=103     ctermbg=234     cterm=none
-" highlight FoldColumn       ctermfg=103     ctermbg=234     cterm=none
-" highlight DiffAdd          ctermfg=none    ctermbg=23      cterm=none
-" highlight DiffChange       ctermfg=none    ctermbg=56      cterm=none
-" highlight DiffDelete       ctermfg=168     ctermbg=96      cterm=none
-" highlight DiffText         ctermfg=0       ctermbg=80      cterm=none
-" highlight SignColumn       ctermfg=244     ctermbg=235     cterm=none
-" highlight Conceal          ctermfg=251     ctermbg=none    cterm=none
-" highlight SpellBad         ctermfg=168     ctermbg=none    cterm=underline
-" highlight SpellCap         ctermfg=80      ctermbg=none    cterm=underline
-" highlight SpellRare        ctermfg=121     ctermbg=none    cterm=underline
-" highlight SpellLocal       ctermfg=186     ctermbg=none    cterm=underline
-" highlight Pmenu            ctermfg=251     ctermbg=234     cterm=none
-" highlight PmenuSel         ctermfg=0       ctermbg=111     cterm=none
-" highlight PmenuSbar        ctermfg=206     ctermbg=235     cterm=none
-" highlight PmenuThumb       ctermfg=235     ctermbg=206     cterm=none
-" highlight TabLine          ctermfg=244     ctermbg=234     cterm=none
-" highlight TablineSel       ctermfg=0       ctermbg=247     cterm=none
-" highlight TablineFill      ctermfg=244     ctermbg=234     cterm=none
-" highlight CursorColumn     ctermfg=none    ctermbg=236     cterm=none
-" highlight CursorLine       ctermfg=none    ctermbg=236     cterm=none
-" highlight ColorColumn      ctermfg=none    ctermbg=236     cterm=none
-" highlight Cursor           ctermfg=0       ctermbg=5       cterm=none
-" highlight htmlEndTag       ctermfg=114     ctermbg=none    cterm=none
-" highlight xmlEndTag        ctermfg=114     ctermbg=none    cterm=none
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
