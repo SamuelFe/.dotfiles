@@ -213,6 +213,12 @@ endfunction
 " Highlight currently open buffer in NERDTree
 autocmd BufEnter * call SyncTree()
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-gitgutter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set updatetime=100
+let g:gitgutter_enabled = 0
+
 "############## END OF PLUGGINGS CONFIGURATION ###############"
 
 
