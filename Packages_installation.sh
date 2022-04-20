@@ -48,18 +48,20 @@ declare -a OFFICIAL_packages_essential=(
     "starship"
     "dunst"
     "npm"
-    "pulseaudio"
-    "pulseaudio-alsa"
-    "pulseaudio-bluetooth"
+    "pipewire"                 # low-level multimedia framework
+    "pipewire-alsa"
+    "pipewire-pulse"
+    "pipewire-media-session"
     "youtube-dl"
-    "pdfjs"
+    "pdfjs"                    # browser pdf viewer
+    "zathura"                  # pdf viewer
     "mpv"
     "mpd"
     "hwinfo"
     "acpi"
     "mlocate"
     "fish"
-    "sxiv"
+    "sxiv"                     # image viewer
     "xwallpaper"
     "lxappearance"
     "qt5ct"
@@ -74,7 +76,7 @@ declare -a OFFICIAL_packages_not_essential=(
     "grub-customizer"
     "code"
     "vlc"
-    "nautilus"
+    "nautilus"                 # file manager 
 )
 
 declare -a DMENU_scripts_dependencies=(
@@ -88,7 +90,7 @@ declare -a DMENU_scripts_dependencies=(
 )
 
 declare -a TOTORO_scripts_dependencies=(
-    "pavucontrol-qt"
+#    "pavucontrol-qt" # replaced with gtk version (didn't test if it breaks something)
     "imagemagick"
     "scrot"
     "wmctrl"
@@ -97,7 +99,7 @@ declare -a TOTORO_scripts_dependencies=(
 )
 
 declare -a AUR_packages_essential=(
-    "brave-bin"
+    "brave-bin"                     # browser
     "nerd-fonts-mononoki"
     "nerd-fonts-ubuntu-mono"
     "nerd-fonts-jetbrains-mono"
@@ -114,7 +116,6 @@ declare -a AUR_packages_not_essential=(
     "notion-app"
     "spotify"
     "spicetify-cli"
-    "xava-git"
 )
 
 declare -a NPM_packages=(

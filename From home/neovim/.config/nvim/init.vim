@@ -39,7 +39,8 @@ call vundle#begin('~/.vim/bundle')
     Plugin 'Xuyuanp/nerdtree-git-plugin'                           " Git highlight for NERDTree
     Plugin 'ryanoasis/vim-devicons'                                " Develeoping icons
     Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'               " Syntax highlighting for NERDTree
-
+    Plugin 'ctrlpvim/ctrlp.vim'                                    " fuzzy find files
+    
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -181,20 +182,20 @@ let g:NERDTreePatternMatchHighlightFullName = 1
 
 let g:NERDTreeGitStatusUseNerdFonts = 1     " Use NerdFonts
 
-" Need to test if works
-let g:NERDTreeGitStatusWithFlags = 1
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-let g:NERDTreeGitStatusNodeColorization = 1
-let g:NERDTreeColorMapCustom = {
-    \ "Staged"    : "#0ee375",  
-    \ "Modified"  : "#d9bf91",  
-    \ "Renamed"   : "#51C9FC",  
-    \ "Untracked" : "#FCE77C",  
-    \ "Unmerged"  : "#FC51E6",  
-    \ "Dirty"     : "#FFBD61",  
-    \ "Clean"     : "#87939A",   
-    \ "Ignored"   : "#808080"   
-    \ }        
+" Doesn't seems to colorize according to git status (althoug I wanted to)
+"let g:NERDTreeGitStatusWithFlags = 1
+"let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+"let g:NERDTreeGitStatusNodeColorization = 1
+"let g:NERDTreeColorMapCustom = {
+"    \ "Staged"    : "#0ee375",  
+"    \ "Modified"  : "#d9bf91",  
+"    \ "Renamed"   : "#51C9FC",  
+"    \ "Untracked" : "#FCE77C",  
+"    \ "Unmerged"  : "#FC51E6",  
+"    \ "Dirty"     : "#FFBD61",  
+"    \ "Clean"     : "#87939A",   
+"    \ "Ignored"   : "#808080"   
+"    \ }        
 
 "############## END OF PLUGGINGS CONFIGURATION ###############"
 
@@ -315,6 +316,29 @@ noremap <silent> <C-Down> :resize -3<CR>
 nnoremap ; :
 vmap ; :
 
+" Jump to particular tab directly
+"NORMAL mode bindings
+noremap <unique> <A-1> 1gt
+noremap <unique> <A-2> 2gt
+noremap <unique> <A-3> 3gt
+noremap <unique> <A-4> 4gt
+noremap <unique> <A-5> 5gt
+noremap <unique> <A-6> 6gt
+noremap <unique> <A-7> 7gt
+noremap <unique> <A-8> 8gt
+noremap <unique> <A-9> 9gt
+noremap <unique> <A-0> 10gt
+"INSERT mode bindings
+inoremap <unique> <A-1> <C-O>1gt
+inoremap <unique> <A-2> <C-O>2gt
+inoremap <unique> <A-3> <C-O>3gt
+inoremap <unique> <A-4> <C-O>4gt
+inoremap <unique> <A-5> <C-O>5gt
+inoremap <unique> <A-6> <C-O>6gt
+inoremap <unique> <A-7> <C-O>7gt
+inoremap <unique> <A-8> <C-O>8gt
+inoremap <unique> <A-9> <C-O>9gt
+inoremap <unique> <A-0> <C-O>10gt
 
 " Change 2 split windows from vert to horiz or horiz to vert
 map <Leader>th <C-w>t<C-w>H
