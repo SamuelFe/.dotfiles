@@ -40,6 +40,8 @@ call vundle#begin('~/.vim/bundle')
     Plugin 'ryanoasis/vim-devicons'                                " Develeoping icons
     Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'               " Syntax highlighting for NERDTree
     Plugin 'ctrlpvim/ctrlp.vim'                                    " fuzzy find files
+    Plugin 'preservim/nerdcommenter'                               " comment things shortcuts shortcuts shortcuts
+    Plugin 'airblade/vim-gitgutter'                                " shows which lines were modified
     
 call vundle#end()            " required
 
@@ -83,16 +85,6 @@ filetype plugin on
 "Uncomment to override defaults:
 let g:instant_markdown_autostart = 0                " Turns off auto preview
 let g:instant_markdown_browser = "qutebrowser"      " Uses qutebrowser for preview
-"let g:instant_markdown_slow = 1
-"let g:instant_markdown_open_to_the_world = 1
-"let g:instant_markdown_allow_unsafe_content = 1
-"let g:instant_markdown_allow_external_content = 0
-"let g:instant_markdown_mathjax = 1
-"let g:instant_markdown_mermaid = 1
-"let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
-"let g:instant_markdown_autoscroll = 0
-"let g:instant_markdown_port = 8888
-"let g:instant_markdown_python = 1
 
 map <Leader>md :InstantMarkdownPreview<CR>          " Previews .md file
 map <Leader>ms :InstantMarkdownStop<CR>             " Kills the preview
@@ -196,6 +188,30 @@ let g:NERDTreeGitStatusUseNerdFonts = 1     " Use NerdFonts
 "    \ "Clean"     : "#87939A",   
 "    \ "Ignored"   : "#808080"   
 "    \ }        
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => CTRL-P
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+" sync open file with NERDTree
+" " Check if NERDTree is open or active
+function! IsNERDTreeOpen()        
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! SyncTree()
+  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
+
+" Highlight currently open buffer in NERDTree
+autocmd BufEnter * call SyncTree()
 
 "############## END OF PLUGGINGS CONFIGURATION ###############"
 
