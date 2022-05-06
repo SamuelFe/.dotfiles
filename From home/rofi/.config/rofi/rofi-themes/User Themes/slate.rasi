@@ -1,9 +1,18 @@
 * {
-  background-color: #282C33;
+  background-color: #282a36;
   border-color: #2e343f;
-  text-color: #8ca0aa;
+  text-color: #f8f8f2;
   spacing: 0;
-  width: 512px;
+  /* width: 512px; */
+  width: 40%;
+  height: 68%;
+  font: "Iosevka Nerd Font 18";
+}
+
+window {
+  border: 3px;
+  border-radius: 12px;
+  border-color: #3b4252;
 }
 
 inputbar {
@@ -17,14 +26,15 @@ prompt {
 }
 
 textbox {
-  background-color: #2e343f;
-  border: 0 0 1px 0;
-  border-color: #282C33;
+  background-color: #44475a;
+  border: 1 1 1 1;
+  border-color: #3b4252;
+  border-radius: 12px;
   padding: 8px 16px;
 }
 
 entry {
-  padding: 16px;
+  padding: 18px;
 }
 
 listview {
@@ -35,9 +45,12 @@ listview {
 
 element {
   border: 0 0 1px 0;
-  padding: 16px;
+  padding: 4px;
 }
 
 element selected {
-  background-color: #2e343f;
+  background-color: #44475a;
+  border: 0 0 0 4px;
+  border-color: #D6ACFF;
+  border-radius: 5px;
 }
