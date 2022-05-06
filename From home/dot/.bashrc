@@ -186,4 +186,4 @@ eval "$(starship init bash)"
 # fi
 
 # Fish Shell
-# exec fish
+exec fish

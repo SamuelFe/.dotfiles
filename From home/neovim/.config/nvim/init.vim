@@ -12,6 +12,8 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
 filetype off                  " required
+let mapleader = ","
+syntax enable
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -33,6 +35,7 @@ call vundle#begin('~/.vim/bundle')
     Plugin 'ap/vim-css-color'                                      " Color previews for CSS
     Plugin 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " Highlighting helper   
     Plugin 'Fymyte/rasi.vim'                                       " Rofi config files colors
+    Plugin 'euclidianAce/BetterLua'                                " Lua highlighting
 "{{ VSCode like achievement }}
     Plugin 'neoclide/coc.nvim', {'branch': 'release'}              " Completion
     Plugin 'scrooloose/nerdtree'                                   " Tree of directories
@@ -42,12 +45,14 @@ call vundle#begin('~/.vim/bundle')
     Plugin 'ctrlpvim/ctrlp.vim'                                    " fuzzy find files
     Plugin 'preservim/nerdcommenter'                               " comment things shortcuts shortcuts shortcuts
     Plugin 'airblade/vim-gitgutter'                                " shows which lines were modified
-    
+"{{ LaTex }}
+    Plugin 'lervag/vimtex'   
 call vundle#end()            " required
 
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
+
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -59,168 +64,44 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 
-"################## PLUGGINGS CONFIGURATION ##################"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => PLUGGINGS CONFIGURATION
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Status Line // lightline
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Always show statusline
-set laststatus=2
+source ~/.config/nvim/plugin-configs/lightline.vim
 
-" Uncomment to prevent non-normal modes showing in powerline and below powerline.
-set noshowmode
-
-" The lightline.vim theme
-let g:lightline = {
-      \ 'colorscheme': 'darcula_samuel',
-      \ }
-
-let mapleader = ","
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-Instant-Markdown
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype plugin on
-"Uncomment to override defaults:
-let g:instant_markdown_autostart = 0                " Turns off auto preview
-let g:instant_markdown_browser = "qutebrowser"      " Uses qutebrowser for preview
+source ~/.config/nvim/plugin-configs/vim-instant-markdown.vim
 
-map <Leader>md :InstantMarkdownPreview<CR>          " Previews .md file
-map <Leader>ms :InstantMarkdownStop<CR>             " Kills the preview
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Rainbow Highlighting 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:rainbow_active = 1
+"source ~/.config/nvim/plugin-configs/vim-rainbow.vim
+" I deactivated this config because it was causing some files (.tex) to doesn't highlight
+" the syntax automatically
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vifm
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>vv :Vifm<CR>
-map <Leader>vs :VsplitVifm<CR>
-map <Leader>sp :SplitVifm<CR>
-map <Leader>dv :DiffVifm<CR>
-map <Leader>tv :TabVifm<CR>
+source ~/.config/nvim/plugin-configs/vifm.vim
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Python syntax highlighting
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:python_highlight_all = 1
+source ~/.config/nvim/plugin-configs/vim-python.vim
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Conquer Of Completion
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:coc_global_extensions = [
-  \ 'coc-snippets',
-  \ 'coc-pairs',
-  \ 'coc-tsserver',
-  \ 'coc-eslint', 
-  \ 'coc-prettier', 
-  \ 'coc-json', 
-  \ 'coc-clangd'
-  \ ]
+source ~/.config/nvim/plugin-configs/coc.vim
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+" => NERDTree
+source ~/.config/nvim/plugin-configs/nerdtree.vim
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" => Nerdtree Syntax Highlighting
+source ~/.config/nvim/plugin-configs/vim-nerdtree-syntax-highlight.vim
 
-let g:coc_snippet_next = '<tab>'
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => NERDTree + plugingS
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
-
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
-" Close the tab if NERDTree is the only window remaining in it.
-autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
-" Requires in vim-nerdtree-syntax-highlighting's README
-let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
-let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
-
-"let g:NERDTreeDisableFileExtensionHighlight = 1      " somehow this line made it don't work
-let g:NERDTreeDisableExactMatchHighlight = 1
-let g:NERDTreeDisablePatternMatchHighlight = 1
-
-let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
-let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
-
-let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDTreeExactMatchHighlightFullName = 1
-let g:NERDTreePatternMatchHighlightFullName = 1
-
-let g:NERDTreeGitStatusUseNerdFonts = 1     " Use NerdFonts
-
-" Doesn't seems to colorize according to git status (althoug I wanted to)
-"let g:NERDTreeGitStatusWithFlags = 1
-"let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-"let g:NERDTreeGitStatusNodeColorization = 1
-"let g:NERDTreeColorMapCustom = {
-"    \ "Staged"    : "#0ee375",  
-"    \ "Modified"  : "#d9bf91",  
-"    \ "Renamed"   : "#51C9FC",  
-"    \ "Untracked" : "#FCE77C",  
-"    \ "Unmerged"  : "#FC51E6",  
-"    \ "Dirty"     : "#FFBD61",  
-"    \ "Clean"     : "#87939A",   
-"    \ "Ignored"   : "#808080"   
-"    \ }        
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => CTRL-P
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+source ~/.config/nvim/plugin-configs/ctrlp.vim
 
-" sync open file with NERDTree
-" " Check if NERDTree is open or active
-function! IsNERDTreeOpen()        
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
+" => Gitgutter
+source ~/.config/nvim/plugin-configs/vim-gitgutter.vim
 
-" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
-" file, and we're not in vimdiff
-function! SyncTree()
-  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-    NERDTreeFind
-    wincmd p
-  endif
-endfunction
-
-" Highlight currently open buffer in NERDTree
-autocmd BufEnter * call SyncTree()
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim-gitgutter
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set updatetime=100
-let g:gitgutter_enabled = 0
-
-"############## END OF PLUGGINGS CONFIGURATION ###############"
-
+" => LaTex
+source ~/.config/nvim/plugin-configs/vimtex.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General Settings
@@ -256,7 +137,6 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 endif
 
-syntax enable
 let g:rehash256 = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

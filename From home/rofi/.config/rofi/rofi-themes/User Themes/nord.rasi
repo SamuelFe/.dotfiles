@@ -1,0 +1,141 @@
+/**
+ * Nordic rofi theme
+ * Adapted by undiabler <undiabler@gmail.com>
+ *
+ * Nord Color palette imported from https://www.nordtheme.com/
+ *
+ */
+
+configuration {
+	font: "Iosevka Nerd Font 11";
+	width: 100;
+	line-margin: 10;
+	lines: 9;
+	columns: 1;
+
+    display-ssh:    "";
+    display-run:    "";
+    display-drun:   "";
+    display-window: "";
+    display-combi:  "";
+    show-icons:     true;
+}
+
+* {
+	nord0: #2e3440;
+	nord1: #3b4252;
+	nord2: #434c5e;
+	nord3: #4c566a;
+
+	nord4: #d8dee9;
+	nord5: #e5e9f0;
+	nord6: #eceff4;
+
+	nord7: #8fbcbb;
+	nord8: #88c0d0;
+	nord9: #81a1c1;
+	nord10: #5e81ac;
+	nord11: #bf616a;
+
+	nord12: #d08770;
+	nord13: #ebcb8b;
+	nord14: #a3be8c;
+	nord15: #b48ead;
+
+    select-bg:  #c6bcee;
+    select-fg:  #2e3440;
+    nselect-bg: #282A36;
+    nselect-fg: #d8dee9;
+
+    background: @nselect-bg;
+    foreground: @nselect-fg;
+    //backlight:   #ccffeedd;
+    background-color:  transparent;
+    
+    highlight: underline bold #eceff4;
+
+    transparent: rgba(40,42,54,1); // before nord0 (in rgba)
+
+}
+
+window {
+    anchor:     north;
+    location:   north;
+    width:      100%;
+    transparency: "screenshot";
+
+    background-color: @nselect-bg; // #15161c;
+    spacing: 0;
+    children:  [mainbox];
+    orientation: horizontal;
+}
+
+mainbox {
+    orientation: horizontal;
+    spacing: 0;
+    children: [ inputbar, message, listview ];
+}
+
+message {
+    color: @nord0;
+    padding: 1;
+    border-color: @foreground;
+    border:  2px 0px 0px;
+    background-color: @nord7;
+}
+
+inputbar {
+    spacing: 103;
+    background-color: @background;
+    text-color: @nselect-fg;
+}
+
+prompt, case-indicator {
+    text-font: inherit;
+    text-color:inherit;
+}
+
+entry{
+    enabled: true;
+}
+
+prompt {
+    margin: 0px 0.3em 0em 0.4em ;
+}
+
+listview {
+    layout: horizontal;
+    padding: 0px 0px 0px;
+//  border-radius: 0px 0px 6px 6px;
+//  border-color: @nord10;
+//  border: 2px 0px 0px;
+    background-color: @background;
+    dynamic: false;
+}
+
+element {
+    padding: 0px 0px 0px;
+    vertical-align: 0.5;
+    color: @foreground;
+    text-color: @nselect-fg;
+}
+
+element selected.normal {
+	background-color: @select-bg;
+	text-color: @select-fg;
+}
+
+button {
+    padding: 6px;
+    color: @foreground;
+    horizontal-align: 0.5;
+
+    border: 2px 0px 2px 2px;
+    border-radius: 4px 0px 0px 4px;
+    border-color: @foreground;
+}
+
+button selected normal {
+    border: 2px 0px 2px 2px;
+    border-color: @foreground;
+}

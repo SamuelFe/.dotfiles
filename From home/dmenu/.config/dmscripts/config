@@ -8,8 +8,9 @@
 
 # DMENU="dmenu"
 DMENU="rofi -dmenu -location 1"
+#DMENU="rofi -dmenu -modi run -location 1 -width 100% -l 1 -line-margin 0 -line-padding 1 -columns 20 -bw 0 -disable-history -hide-scrollbar"
 
-# DMBROWSER="brave-browser"
+# DMBROWSER="brave"
 DMBROWSER="qutebrowser"
 
 # DMTERM="konsole -e"
@@ -54,6 +55,7 @@ confedit_list[alacritty]="$HOME/.config/alacritty/alacritty.yml"
 confedit_list[bash]="$HOME/.bashrc"
 confedit_list[dmenu scripts]="$HOME/.config/dmscripts/config"
 confedit_list[dunst]="$HOME/.config/dunst/dunstrc"
+confedit_list[fish]="$HOME/.config/fish/config.fish"
 confedit_list[i3]="$HOME/.config/i3/config"
 confedit_list[mpv]="$HOME/.config/mpv/mpv.conf"
 confedit_list[neovim]="$HOME/.config/nvim/init.vim"
@@ -62,6 +64,7 @@ confedit_list[powerline]="$HOME/.config/powerline-shell/config.json"
 confedit_list[qutebrowser]="$HOME/.config/qutebrowser/config.py"
 confedit_list[starship]="$HOME/.config/starship.toml"
 confedit_list[vifm]="$HOME/.config/vifm/vifmrc"
+confedit_list[zathura]="$HOME/.config/zathura/zathurarc"
 
 
 # translate script config

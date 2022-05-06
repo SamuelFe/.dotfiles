@@ -451,6 +451,7 @@ key_bindings:
   - { key: Copy, mods: None, action: Copy }
   - { key: L, mods: Control, action: ClearLogNotice }
   - { key: L, mods: Control, chars: "\f" }
+  - { key: N, mods: Control|Shift, action: SpawnNewInstance }
   - {
       key: PageUp,
       mods: None,

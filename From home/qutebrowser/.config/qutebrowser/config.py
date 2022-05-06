@@ -56,7 +56,7 @@ interceptor.register(filter_yt)
 config.bind('st', 'config-cycle tabs.show always switching') # switch
 config.bind('pw', 'spawn passmenu') # password
 config.bind('z', 'mode-enter passthrough') # also enters into Passthrough with 'z'
-# config.bind('jj', 'mode-enter normal', mode='insert') # didn't want to press Esc
+#config.bind(',,', 'mode-enter normal', mode='insert') # didn't want to press Esc
 config.bind(',m', 'spawn umpv --ytdl-format=best {url}')                         # bye-bye youtube ads
 config.bind(',M', 'hint links userscript youtube_helper') #bye-bye youtube ads
 config.bind(';M', 'hint --rapid links spawn umpv --ytdl-format=best {hint-url}') # bye-bye youtube ads
@@ -208,7 +208,7 @@ c.tabs.position = 'top'
 c.tabs.title.alignment = 'center'
 
 # Format to use for the tab title
-c.tabs.title.format = '{private}{current_title}'
+c.tabs.title.format = '{private}{audio}{current_title}'
 
 # Width of tab indicators.
 c.tabs.indicator.width = 3

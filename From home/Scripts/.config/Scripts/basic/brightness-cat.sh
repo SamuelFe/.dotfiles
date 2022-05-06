@@ -162,4 +162,4 @@ case $1 in
 esac
 
 # polybar ipc control
-polybar-msg hook brightness 1 
+#polybar-msg hook brightness 1 

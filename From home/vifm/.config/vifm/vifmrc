@@ -419,12 +419,15 @@ nnoremap w :view<cr>
 vnoremap w :view<cr>gv
 
 " Open file in existing instance of gvim
-nnoremap o :!nvim --remote-tab-silent %f<cr>
+nnoremap o :go ~/
 " Open file in new instance of gvim
 nnoremap O :!nvim %f<cr>
 
 " Open file in the background using its default program
 nnoremap gb :file &<cr>l
+
+" Ctrl-h toggle show hidden files
+nnoremap <c-h> :test
 
 " Interaction with system clipboard
 if has('win')
@@ -456,8 +459,8 @@ nnoremap ,t :!xterm &<cr>
 
 " Open editor to edit vifmrc and apply settings after returning to vifm
 nnoremap ,c :write | edit $MYVIFMRC | restart full<cr>
-" Open gvim to edit vifmrc
-nnoremap ,C :!gvim --remote-tab-silent $MYVIFMRC &<cr>
+" Open nvim to edit vifmrc
+nnoremap ,C :!nvim $MYVIFMRC &<cr>
 
 " Toggle wrap setting on ,w key
 nnoremap ,w :set wrap!<cr>

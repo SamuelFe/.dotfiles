@@ -5,11 +5,11 @@
 	"last_version": 4126,
 	"last_window_id": 1,
 	"log_indexing": false,
-	"next_update_check": 1649288428,
+	"next_update_check": 1651577892,
 	"settings":
 	{
 		"new_window_full_screen": false,
-		"new_window_height": 704.0,
+		"new_window_height": 344.0,
 		"new_window_maximized": false,
 		"new_window_settings":
 		{
@@ -50,6 +50,7 @@
 			},
 			"file_history":
 			[
+				"/home/samuel/Desktop/.Xresourses",
 				"/home/samuel/.config/spicetify/Themes/Dribbblish/color.ini",
 				"/home/samuel/.config/spicetify/Themes/Onepunch/README.md"
 			],
@@ -141,7 +142,7 @@
 			{
 			}
 		},
-		"new_window_width": 1334.0
+		"new_window_width": 1330.0
 	},
 	"windows":
 	[
@@ -187,6 +188,7 @@
 			},
 			"file_history":
 			[
+				"/home/samuel/Desktop/.Xresourses",
 				"/home/samuel/.config/spicetify/Themes/Dribbblish/color.ini",
 				"/home/samuel/.config/spicetify/Themes/Onepunch/README.md"
 			],
@@ -266,7 +268,7 @@
 				"height": 0.0
 			},
 			"pinned_build_system": "",
-			"position": "0,0,0,0,0,16,48,1350,752,1366,768,2",
+			"position": "0,0,0,0,0,16,404,1346,748,1366,768,2",
 			"project": "",
 			"replace":
 			{

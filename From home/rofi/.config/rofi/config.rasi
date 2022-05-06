@@ -4,4 +4,4 @@ configuration {
 	icon-theme: "WhiteSur-grey-dark";
     fixed-num-lines: false;
 }
-@theme "./nord.rasi"
+@theme "./cloud.rasi"

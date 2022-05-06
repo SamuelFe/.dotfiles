@@ -15,6 +15,9 @@ b_CWAR=" \033[1;33m"                                # bold warning color
 ### VARIABLES
 FULL_INSTALLATON=true
 
+# --> Packages I installed as dependencies for https://github.com/elenapan/dotfiles AwesomeWM config
+# yay -S fortune-mod redshift mpc maim feh light-git inotify-tools
+
 ### ARRAYS
 declare -a OFFICIAL_packages_essential=(
     "bluez"
@@ -65,6 +68,8 @@ declare -a OFFICIAL_packages_essential=(
     "xwallpaper"
     "lxappearance"
     "qt5ct"
+    "libsecret"                 # make loggings in applications possible
+    "xdo"                       # i3-master-stack dependency
 )
 
 declare -a OFFICIAL_packages_not_essential=(
@@ -74,7 +79,7 @@ declare -a OFFICIAL_packages_not_essential=(
     "discord"
     "discocss-git"
     "grub-customizer"
-    "code"
+    "visual-studio-code-bin"
     "vlc"
     "nautilus"                 # file manager 
 )
@@ -310,6 +315,12 @@ case $response in
         nvidia-xconfig
         ;;
 esac
+
+errorNoteTaking
+
+## PIP PROGRAMS
+prompt -i "\n\t************************************\n\t* i3 master stack pip dependencies *\n\t************************************"
+pip3 install i3ipc      # i3-master-stack dependency
 
 errorNoteTaking
 

@@ -1,5 +1,5 @@
 [global]
-    font = JetBrains Mono 12
+    font = JetBrains Mono 9
     # Allow a small subset of html markup:
     #   <b>bold</b>
     #   <i>italic</i>
@@ -48,7 +48,7 @@
     
     # Split notifications into multiple lines if they don't fit into
     # geometry.
-    word_wrap = yes
+    word_wrap = no
     
     # Ignore newlines '\n' in notifications.
     ignore_newline = no
@@ -143,11 +143,11 @@
     dmenu = rofi -dmenu -theme ~/.config/rofi/rofi-dunst/theme.rasi -p "open"
     
     # Browser for opening urls in context menu.
-    browser = firefox
+    browser = qutebrowser
 
     # Align icons left/right/off
     icon_position = left
-    min_icon_size = 100
+    min_icon_size = 50
     max_icon_size = 100
     # Paths to default icons.
     #icon_folders = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/
