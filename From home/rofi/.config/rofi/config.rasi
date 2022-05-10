@@ -1,7 +1,12 @@
 configuration {
-	modi: "bookmarks:~/.config/rofi/rofi-bookmarks/rofi-bookmarks.py";
-	show-icons: true;
-	icon-theme: "WhiteSur-grey-dark";
-    fixed-num-lines: false;
+    icon-theme: "papirus-icon-theme";
+    display-drun: "Applications:";
+    display-window: "Windows:";
+    display-run: "";
+    drun-display-format: "{icon} {name}";
+    font: "JetBrainsMono Nerd Font Medium 10";
+    modi: "window,run,drun";
 }
-@theme "./rofi-themes/User Themes/cloud.rasi"
+@theme "./themes/cloud.rasi"
+
+

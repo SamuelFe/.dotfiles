@@ -1,7 +1,7 @@
 * {
-BG:    #4D4845ff;
-BGA:   #4D4845ff;
-FG:    #FDEDCFff;
+BG:    #282A36ff;
+BGA:   #C6BCEEff;
+FG:    #D8DEE9ff; // before: #FDEDCFff
 BDR:   #EBEBEBff;
 SEL:   #FDEDCFff;
 UGT:   #4D4845ff;

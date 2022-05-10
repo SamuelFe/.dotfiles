@@ -1,33 +1,21 @@
-/*
- *
- * Author  : Vixel View
- * Mail    : vcyzscape@gmail.com
- * Github  : @vcyzteen
- *
- */
- 
 @import "dark.rasi"
 
-configuration {
-    show-icons:                     true;
-    display-drun: 					"applications";
-    drun-display-format:            "{icon}";
-    disable-history:                false;
-	click-to-exit: 					true;
-    location:                       0;
-    font:				 	        "Noto Sans 10";
-}
-
+/*
+ * location property positions:
+ * 1 2 3
+ * 8 0 4
+ * 7 6 5
+ */
 
 window {
     background-color:               @BG;
     border:                  		0px;
     border-color:                  	@BGA;
     border-radius:                  10px;
-    width:                          390px;
+    width:                          600px;
     height:                         400px;
     x-offset:                       0px;
-    y-offset:                       0px;
+    y-offset:                       125px;
 }
 
 prompt {
@@ -36,14 +24,14 @@ prompt {
     padding: 			    8px;
     background-color: 		    @BGA;
     text-color: 		    @FG;
-    border:                  	    0px 0px 0px 0px;
+    border:                  	    1px 1px 1px 1px;
     border-color:                   @BDR;
     border-radius:                  6px;
 }
 
 textbox-prompt-colon {
     expand: 		            false;
-    str: 			    "";
+    str: 			    "";
     border-radius:                  6px;
     background-color:               @SEL;
     text-color:                     @BGA;
@@ -57,16 +45,16 @@ entry {
     placeholder-color:              @FG;
     expand:                         true;
     horizontal-align:               0;
-    placeholder:                    "Search Apps...";
+    placeholder:                    "Search...";
     blink:                          true;
-    border:                  		0px 0px 0px 0px;
+    border:                  		0px 0px 2px 0px;
     border-color:                  	@BDR;
-    border-radius:                  8px;
+    border-radius:                  10px;
     padding:                        8px;
 }
 
 inputbar {
-    children: 			            [ textbox-prompt-colon,entry,case-indicator ];
+    children: 			            [ textbox-prompt-colon,prompt ];
     background-color:               #00000000;
     text-color:                     @FG;
     expand:                         false;
@@ -75,7 +63,7 @@ inputbar {
     border-color:                   @BDR;
     margin:                         0px 0px 0px 0px;
     padding:                        0px;
-    position:                       0;
+    position:                       center;
 }
 
 case-indicator {
@@ -86,8 +74,8 @@ case-indicator {
 
 listview {
     background-color:               #00000000;
-    columns:                        6;
-    lines:			    4;
+    columns:                        2;
+    lines:			    8;
     spacing:                        5px;
     cycle:                          false;
     dynamic:                        true;
@@ -112,7 +100,7 @@ element-icon {
     text-color:                     inherit;
     horizontal-align:               0.5;
     vertical-align:                 0.5;
-    size:                           40px;
+    size:                           20px;
     border:                         0px;
 }
 element-text {

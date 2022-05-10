@@ -9,12 +9,12 @@ ScaleImageCropped="true"
 ## Whether the image should be cropped when scaled proportionally. Setting this to false will fit the whole image instead, possibly leaving white space. This can be exploited beautifully with illustrations (try it with "undraw.svg" included in the theme).
 
 # laptop
-#ScreenWidth="1360"
-#ScreenHeight="768"
+ScreenWidth="1360"
+ScreenHeight="768"
 
 # desktop
-ScreenWidth="1920"
-ScreenHeight="1080"
+#ScreenWidth="1920"
+#ScreenHeight="1080"
 
 ## Adjust to your resolution to help SDDM speed up on calculations
 

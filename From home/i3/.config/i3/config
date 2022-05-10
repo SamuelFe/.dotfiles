@@ -151,7 +151,8 @@ bindsym $mod+Shift+q kill
 ## dmenu
 # start dmenu (a program launcher)
 #bindsym $mod_next+space exec dmenu_run
-bindsym $mod_next+space exec --no-startup-id "~/.config/Scripts/dmenu/dmenu.sh"
+#bindsym $mod_next+space exec --no-startup-id "~/.config/Scripts/dmenu/dmenu.sh"
+bindsym $mod_next+space exec --no-startup-id "rofi -theme '.config/rofi/themes/rofi_run.rasi' -matching prefix -show run"
 
 ## dmenu scripts
 bindsym $mod+colon exec --no-startup-id "~/.config/Scripts/dmenu/dmplay.sh"
