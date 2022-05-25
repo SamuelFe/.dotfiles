@@ -1,5 +1,5 @@
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
+" nnoremap <leader>n :NERDTreeFocus<CR> " switched to nerdtree-tabs commands
+" nnoremap <C-t> :NERDTreeToggle<CR>    " switched to nerdtree-tabs commands
 nnoremap <C-f> :NERDTreeFind<CR>
 
 " Exit Vim if NERDTree is the only window remaining in the only tab.

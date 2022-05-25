@@ -1,0 +1,1 @@
+nnoremap ff :Rg<CR>

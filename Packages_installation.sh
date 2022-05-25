@@ -29,7 +29,6 @@ declare -a OFFICIAL_packages_essential=(
     "xdotool"
     "network-manager-applet"
     "nitrogen"
-    "picom"
     "neovim"
     "alacritty"
     "i3-gaps"
@@ -70,6 +69,12 @@ declare -a OFFICIAL_packages_essential=(
     "qt5ct"
     "libsecret"                 # make loggings in applications possible
     "xdo"                       # i3-master-stack dependency
+    "fzf"                       # fuzzy finder, also fzf vim plugin dependency
+    "fd"                        # aster and more colorful alternative to find
+    "bat"                       # smarter cat with syntax highlighting
+    "sxhkd"                     # hotkeys daemon
+    "rofi-calc"                 # calculator with rofi
+    "bc"                        # rofi-alacritty dependency
 )
 
 declare -a OFFICIAL_packages_not_essential=(
@@ -105,6 +110,7 @@ declare -a TOTORO_scripts_dependencies=(
 
 declare -a AUR_packages_essential=(
     "brave-bin"                     # browser
+    "picom-git"                     # compositor
     "nerd-fonts-mononoki"
     "nerd-fonts-ubuntu-mono"
     "nerd-fonts-jetbrains-mono"

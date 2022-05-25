@@ -32,6 +32,9 @@ function fish_user_key_bindings
   # fish_default_key_bindings
   fish_vi_key_bindings
 end
+
+set fish_key_bindings fish_user_key_bindings
+
 ### END OF VI MODE ###
 
 ### AUTOCOMPLETE AND HIGHLIGHT COLORS ###
@@ -97,6 +100,31 @@ end
 
 
 ### FUNCTIONS ###
+# extract archieves
+function ex
+  if test -f $1 ;
+    switch $1
+      case *.tar.bz2;    tar xjf $1   ;;
+      case  *.tar.gz;    tar xzf $1   ;;
+      case  *.bz2;       bunzip2 $1   ;;
+      case  *.rar;       unrar x $1   ;;
+      case  *.gz;        gunzip $1    ;;
+      case  *.tar;       tar xf $1    ;;
+      case  *.tbz2;      tar xjf $1   ;;
+      case  *.tgz;       tar xzf $1   ;;
+      case  *.zip;       unzip $1     ;;
+      case  *.Z;         uncompress $1;;
+      case  *.7z;        7z x $1      ;;
+      case  *.deb;       ar x $1      ;;
+      case  *.tar.xz;    tar xf $1    ;;
+      case  *.tar.zst;   unzstd $1    ;;
+      case  '*'          echo "'$1' cannot be extracted via ex()" ;;
+    end
+  else
+    echo "'$1' is not a valid file"
+  end
+end
+
 # Spark functions
 function letters
     cat $argv | awk -vFS='' '{for(i=1;i<=NF;i++){ if($i~/[a-zA-Z]/) { w[tolower($i)]++} } }END{for(i in w) print i,w[i]}' | sort | cut -c 3- | spark | lolcat
@@ -205,7 +233,6 @@ end
 ### ALIASES ###
 # \x1b[2J   <- clears tty
 # \x1b[1;1H <- goes to (1, 1) (start)
-alias clear='echo -en "\x1b[2J\x1b[1;1H" ; echo; echo; seq 1 (tput cols) | sort -R | spark | lolcat; echo; echo'
 
 # root privileges
 alias doas="doas --"
@@ -230,12 +257,13 @@ alias doomupgrade="~/.emacs.d/bin/doom upgrade"
 alias doompurge="~/.emacs.d/bin/doom purge"
 
 # pacman and yay
+alias pacs='sudo pacman -S '
 alias pacsyu='sudo pacman -Syu'                  # update only standard pkgs
+alias pacsyy='sudo pacman -Syy'                # Refresh pkglist & update standard pkgs
 alias pacsyyu='sudo pacman -Syyu'                # Refresh pkglist & update standard pkgs
 alias yaysua='yay -Sua --noconfirm'              # update only AUR pkgs (yay)
+alias yays='yay -S '
 alias yaysyu='yay -Syu --noconfirm'              # update standard pkgs and AUR pkgs (yay)
-alias parsua='paru -Sua --noconfirm'             # update only AUR pkgs (paru)
-alias parsyu='paru -Syu --noconfirm'             # update standard pkgs and AUR pkgs (paru)
 alias unlock='sudo rm /var/lib/pacman/db.lck'    # remove pacman lock
 alias cleanup='sudo pacman -Rns (pacman -Qtdq)' # remove orphaned packages
 
@@ -343,6 +371,7 @@ alias dtosbackup='cp -Rf /etc/dtos ~/dtos-backup-(date +%Y.%m.%d-%H.%M.%S)'
 # Get this script from my GitLab: gitlab.com/dwt1/shell-color-scripts
 # Or install it from the Arch User Repository: shell-color-scripts
 #colorscript random
+
 
 ### SETTING THE STARSHIP PROMPT ###
 starship init fish | source

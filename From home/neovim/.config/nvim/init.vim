@@ -36,10 +36,12 @@ call vundle#begin('~/.vim/bundle')
     Plugin 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " Highlighting helper   
     Plugin 'Fymyte/rasi.vim'                                       " Rofi config files colors
     Plugin 'euclidianAce/BetterLua'                                " Lua highlighting
+    Plugin 'kovetskiy/sxhkd-vim'                                   " sxhkd highlighting
 "{{ VSCode like achievement }}
     Plugin 'neoclide/coc.nvim', {'branch': 'release'}              " Completion
     Plugin 'scrooloose/nerdtree'                                   " Tree of directories
     Plugin 'Xuyuanp/nerdtree-git-plugin'                           " Git highlight for NERDTree
+    Plugin 'jistr/vim-nerdtree-tabs'                               " Painless nerdtree & tabs together
     Plugin 'ryanoasis/vim-devicons'                                " Develeoping icons
     Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'               " Syntax highlighting for NERDTree
     Plugin 'ctrlpvim/ctrlp.vim'                                    " fuzzy find files
@@ -47,6 +49,11 @@ call vundle#begin('~/.vim/bundle')
     Plugin 'airblade/vim-gitgutter'                                " shows which lines were modified
 "{{ LaTex }}
     Plugin 'lervag/vimtex'   
+"{{ FZF }}
+    Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }          " fuzzy searcher
+    Plugin 'junegunn/fzf.vim'
+
+
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -76,7 +83,7 @@ source ~/.config/nvim/plugin-configs/vim-instant-markdown.vim
 
 " => Rainbow Highlighting 
 "source ~/.config/nvim/plugin-configs/vim-rainbow.vim
-" I deactivated this config because it was causing some files (.tex) to doesn't highlight
+" I deactivated this config because it was causing some files (.tex) to don't highlight
 " the syntax automatically
 
 " => Vifm
@@ -94,6 +101,9 @@ source ~/.config/nvim/plugin-configs/nerdtree.vim
 " => Nerdtree Syntax Highlighting
 source ~/.config/nvim/plugin-configs/vim-nerdtree-syntax-highlight.vim
 
+" => Painless Nerdtree + tabs
+source ~/.config/nvim/plugin-configs/nerdtree-tabs.vim
+
 " => CTRL-P
 source ~/.config/nvim/plugin-configs/ctrlp.vim
 
@@ -102,6 +112,9 @@ source ~/.config/nvim/plugin-configs/vim-gitgutter.vim
 
 " => LaTex
 source ~/.config/nvim/plugin-configs/vimtex.vim
+
+" => FZF
+source ~/.config/nvim/plugin-configs/fzf.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General Settings
@@ -201,6 +214,9 @@ map <Leader>tt :vnew term://bash<CR>
 " => Splits and Tabbed Files
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set splitbelow splitright
+
+" open tabedit command more easily
+nnoremap tt :tabedit 
 
 " Remap splits navigation to just CTRL + hjkl
 nnoremap <C-h> <C-w>h

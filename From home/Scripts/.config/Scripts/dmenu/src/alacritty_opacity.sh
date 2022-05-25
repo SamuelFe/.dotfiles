@@ -26,5 +26,5 @@ esac
 
 echo $num #debug
 
-sed -i "/^background_opacity:.*/c\background_opacity: $num" ~/.config/alacritty/alacritty.yml
+sed -i "/^window.opacity:.*/c\window.opacity: $num" ~/.config/alacritty/alacritty.yml
 touch ~/.config/alacritty/alacritty.yml

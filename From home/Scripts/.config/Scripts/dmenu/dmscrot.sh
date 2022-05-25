@@ -4,7 +4,7 @@
 # Dependencies: dmenu, maim, tee, xdotool, xclip
 
 # configuration
-dconf=$HOME/Scripts/dmenu/dconf
+dconf=$HOME/.config/Scripts/dmenu/dconf
 select_bg=$(awk '$1=="select_bg" {print $2}' "$dconf")
 select_fg=$(awk '$1=="select_fg" {print $2}' "$dconf")
 
