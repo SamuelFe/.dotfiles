@@ -10,6 +10,13 @@
 	'selected-normal-background' changes the text-color of the focused item.
 	'lightbg' changes the highlight color of the list items.
 **/
+configuration{
+    show-icons:                     true;
+    disable-history:                false;
+	click-to-exit: 					true;
+    location:                       2;
+    font:				 	        "Noto Sans 12";
+}
 * {
     red:                         rgba ( 220, 50, 47, 100 % );
     selected-active-foreground:  var(blackText);
@@ -39,17 +46,16 @@
     normal-foreground:           var(foreground);
     alternate-urgent-foreground: var(red);
     selected-normal-background:  var(lightbg);
-    font:                        "DejaVu Sans 12";
     blackText:			 rgba(0, 0, 0, 100 %);
 }
 window {
-    padding:          5;
     background-color: var(background);
     border:           2;
     border-radius:    12px;
     fullscreen:	      false;
     transparency:     "screenshot";
     width:            50%;
+    y-offset:         120;
 }
 mainbox {
     padding: 10;
@@ -75,7 +81,7 @@ listview {
     spacing:      2px ;
     fixed-height: 0;
     border:       2px dash 0px 0px ;
-    lines:        5;
+    lines:        8;
 }
 element {
     padding: 1px ;
@@ -155,10 +161,10 @@ prompt {
     text-color: var(normal-foreground);
 }
 textbox-prompt-colon {
-    margin:     0px 0.3000em 0.0000em 0.0000em ;
     expand:     false;
-    str:        " > ";
     text-color: inherit;
+    font:       "DejaVu Sans 20";
+    str:        "  ";
 }
 error-message {
     background-color: rgba ( 0, 0, 0, 0 % );

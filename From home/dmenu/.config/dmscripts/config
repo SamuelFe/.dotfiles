@@ -57,7 +57,7 @@ confedit_list[polybar]="$HOME/.config/polybar/config_i3.ini"
 confedit_list[powerline]="$HOME/.config/powerline-shell/config.json"
 confedit_list[qutebrowser]="$HOME/.config/qutebrowser/config.py"
 confedit_list[starship]="$HOME/.config/starship.toml"
-confedit_list[sxhkdrc]="$HOME/.config/sxhkd/sxhkdrc"
+confedit_list[sxhkd]="$HOME/.config/sxhkd/sxhkdrc"
 confedit_list[vifm]="$HOME/.config/vifm/vifmrc"
 confedit_list[zathura]="$HOME/.config/zathura/zathurarc"
 

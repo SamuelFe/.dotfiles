@@ -128,7 +128,7 @@ element.normal.active {
 }
 element.selected.normal {
     background-color: @SEL;
-    text-color:       @FG;
+    text-color:       @BG;
 }
 element.selected.urgent {
     background-color: @UGT;

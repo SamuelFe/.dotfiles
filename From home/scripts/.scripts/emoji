@@ -4,7 +4,8 @@
 # Dependencies: dmenu, xdotool, notify-send(optional)
 
 # configuration
-dconf=$HOME/.config/Scripts/dmenu/dconf
+dconf=$HOME/.scripts/src/dconf
+SRC=$HOME/.scripts/src/emoji/emoji
 select_bg=$(awk '$1=="select_bg" {print $2}' "$dconf")
 select_fg=$(awk '$1=="select_fg" {print $2}' "$dconf")
 
@@ -15,7 +16,7 @@ font=$(grep "font " "$dconf" | cut -d' ' -f 2-)
 font_size=$(awk '$1=="font_size" {print $2}' "$dconf")
 
 # Get user selection via dmenu from emoji file.
-chosen=$(cut -d ';' -f1 ~/.config/Scripts/dmenu/src/emoji | dmenu -i \
+chosen=$(cut -d ';' -f1 $SRC | dmenu -i \
 	-l 15 -nb "$nselect_bg" \
 	-nf "$nselect_fg" \
 	-sb "$select_bg" \

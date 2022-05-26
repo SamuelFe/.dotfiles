@@ -1,3 +1,5 @@
 #!/bin/env bash
 
-$HOME/.dmenu_scripts/scripts/colpicker_program/dm-colorpicker-program --short --one-shot | xsel -b
+SRC=$HOME/.scripts/src/colpicker_program
+
+$SRC/dm-colorpicker-program --short --one-shot | xsel -b

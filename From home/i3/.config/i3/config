@@ -98,7 +98,7 @@ for_window [class=".*"] title_format "<b>%title</b>"
 popup_during_fullscreen leave_fullscreen
 
 # AUTOMATICALLY STARTING APPLICATIONS ON I3 STARTUP
-exec --no-startup-id $HOME/.config/Scripts/basic/startup.sh # coffee wallpaper trick
+exec --no-startup-id $HOME/.scripts/basic/startup.sh # coffee wallpaper trick
 exec --no-startup-id sxhkd & # hotkeys daemon
 exec --no-startup-id flameshot # screenshots
 exec setxkbmap -model abnt2 -layout br -variant abnt2 # fixes my keyboard layout

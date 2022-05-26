@@ -1,31 +1,45 @@
-#!/bin/bash
+#!/bin/env bash
+
+getdefaultsinkname() {
+    pacmd stat | awk -F": " '/^Default sink name: /{print $2}'
+}
 
 getdefaultsinkvol() {
-    pamixer --get-volume
+    pacmd list-sinks |
+        awk '/^\s+name: /{indefault = $2 == "<'"$(getdefaultsinkname)"'>"}
+            /^\s+volume: / && indefault {print $5; exit}' |
+        sed 's/%//'
 }
 
 getmutestat() {
-    pamixer --get-mute
+    pacmd list-sinks |
+        awk '/^\s+name: /{indefault = $2 == "<'"$(getdefaultsinkname)"'>"}
+            /^\s+muted: / && indefault {print $2; exit}'
 }
 
 setdefaulsinkvol() {
-    pamixer --set-volume $1
+    pactl set-sink-volume "$(getdefaultsinkname)" $1
 }
+
+if ! pulseaudio --check; then # replaced pulseaudio with pipewire
+    echo "Puseaudio Inactive"
+    exit
+fi
 
 MUTE=$(getmutestat)
 VOL=$(getdefaultsinkvol)
-DIR="$HOME/.config/Scripts/basic/cat"
+DIR="$HOME/.scripts/basic/cat"
 STEP=5
 
 case "$1" in
 -inc)
-    if [ "$MUTE" = "true" ]; then
-        pamixer --toggle-mute
+    if [ "$MUTE" = "yes" ]; then
+        pactl set-sink-mute @DEFAULT_SINK@ toggle
     fi
     ((NEWVOL = $VOL + $STEP))
-    if [ $NEWVOL -lt 100 ]; then
-        pamixer --increase $STEP
-        if [ $NEWVOL -gt 90 ]; then
+    if [ $NEWVOL -lt 130 ]; then
+        pactl set-sink-volume @DEFAULT_SINK@ +$STEP%
+        if [ $NEWVOL -gt 100 ]; then
             dunstify -a "Volume" \
                 "Volume" \
                 "Increase \nVolume: " \
@@ -55,22 +69,22 @@ case "$1" in
                 -r 100
         fi
     else
-        pamixer --set-volume 100
+        pactl set-sink-volume @DEFAULT_SINK@ 130%
         dunstify -a "Volume" \
             "Volume" \
             "Increase \nVolume: " \
-            -h int:value:100 \
+            -h int:value:130 \
             -i $DIR/audio-volume-overamplified-symbolic.svg \
             -r 100
     fi
     ;;
 -dec)
-    if [ "$MUTE" = "muted" ]; then
-        pamixer --toggle-mute
+    if [ "$MUTE" = "yes" ]; then
+        pactl set-sink-mute @DEFAULT_SINK@ toggle
     fi
     ((NEWVOL = $VOL - $STEP))
     if [ $NEWVOL -gt -1 ]; then
-        pamixer --decrease $STEP
+        pactl set-sink-volume @DEFAULT_SINK@ -$STEP%
         if [ $NEWVOL -gt 100 ]; then
             dunstify -a "Volume" \
                 "Volume" \
@@ -101,7 +115,7 @@ case "$1" in
                 -r 100
         fi
     else
-        pamixer --set-volume 0
+        pactl set-sink-volume @DEFAULT_SINK@ 0%
         dunstify -a "Volume" \
             "Volume" \
             "Decrease \nVolume: " \
@@ -111,8 +125,8 @@ case "$1" in
     fi
     ;;
 -mute)
-    if [ "$MUTE" = "true" ]; then
-        pamixer --toggle-mute
+    if [ "$MUTE" = "yes" ]; then
+        pactl set-sink-mute @DEFAULT_SINK@ toggle
         if [ $VOL -gt 100 ]; then
             dunstify -a "Volume" \
                 "Volume" \
@@ -143,7 +157,7 @@ case "$1" in
                 -r 100
         fi
     else
-        pamixer --toggle-mute 
+        pactl set-sink-mute @DEFAULT_SINK@ toggle
         dunstify -a "Volume" \
             "Volume" \
             "Mute \nVolume" \

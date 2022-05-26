@@ -5,7 +5,6 @@
 # or select with arrow-keys and hit [Enter]
 
 BROWSER="qutebrowser"
-# BROWSER="brave-browser"
 
 declare -a notion_pages=(
 "Action Zone"

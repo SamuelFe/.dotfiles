@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 
 getdefaultsinkname() {
     pacmd stat | awk -F": " '/^Default sink name: /{print $2}'
@@ -28,7 +28,7 @@ fi
 
 MUTE=$(getmutestat)
 VOL=$(getdefaultsinkvol)
-DIR="$HOME/.config/Scripts/basic/icons"
+DIR="$HOME/.scripts/basic/icons"
 
 case "$1" in
 -inc)

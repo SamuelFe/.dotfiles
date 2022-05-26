@@ -4,7 +4,7 @@
 # Dependencies: dmenu
 
 # configuration
-dconf=$HOME/.config/Scripts/dmenu/dconf
+dconf=$HOME/.scripts/src/dconf
 select_bg=$(awk '$1=="select_bg" {print $2}' "$dconf")
 select_fg=$(awk '$1=="select_fg" {print $2}' "$dconf")
 

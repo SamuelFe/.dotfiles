@@ -3,7 +3,8 @@
 # Use: Show a cheat sheet for shortcuts of programs.
 # Dependencies: dmenu
 
-dconf=$HOME/.config/Scripts/dmenu/dconf
+DMENU="rofi -dmenu -p  -i -theme keybindings"
+dconf=$HOME/.scripts/src/dconf
 select_bg=$(awk '$1=="select_bg" {print $2}' "$dconf")
 select_fg=$(awk '$1=="select_fg" {print $2}' "$dconf")
 
@@ -16,15 +17,16 @@ font_size=$(awk '$1=="font_size" {print $2}' "$dconf")
 # add more programs
 declare -a options=(
     "i3"
+    "sxhkd"
     "zathura"
     "feh"
 )
 
 choice=$(printf '%s\n' "${options[@]}" |
     sed 's/^/ /' |
-    dmenu -i -l 20 -nb "$nselect_bg" -nf "$nselect_fg" -sb "$select_bg" -sf "$select_fg" -fn "$font"-"$font_size" -p '     ')
+      ${DMENU})
 
-SOURCES=$HOME/.config/Scripts/dmenu/src/shortcuts
+SOURCES=$HOME/.scripts/src/shortcuts
 
 if [ "$choice" == " i3" ]; then
     if [ ! -f "$HOME/.config/i3/config" ]; then
@@ -33,7 +35,7 @@ if [ "$choice" == " i3" ]; then
     grep ^bindsym "$HOME/.config/i3/config" |
         sed 's/bindsym //' |
         sed 's/ --no-startup-id //' |
-        sed 's/$mod//' |
+        sed 's/$mod//' |
         sed 's/exec/ /' |
         sed 's/+/  /' |
         sed 's/^/ /' |
@@ -45,6 +47,9 @@ if [ "$choice" == " i3" ]; then
             -sf "$select_fg" \
             -fn "$font"-"$font_size" \
             -p "   "
+
+elif [ "$choice" == " sxhkd" ]; then
+    cat ~/.config/sxhkd/sxhkdrc | awk '/^[a-z]/ && last {print $0,"\t",last} {last=""} /^#/{last=$0}' | column -t -s $'\t' | ${DMENU}
 
 elif [ "$choice" == " zathura" ]; then
     cat <"$SOURCES"/zathura | sed 's/^/ /' | sed 's/->/ /' |

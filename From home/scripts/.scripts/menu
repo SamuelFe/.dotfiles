@@ -1,36 +1,46 @@
-#!/bin/env bash
+#!/bin/bash
+#
+# Use: For basic tasks you want.
+# Dependencies: dmenu
 
-# Description: a hub that you can execute all the other scripts
+# configuration
+dconf=$HOME/.scripts/src/dconf
+select_bg=$(awk '$1=="select_bg" {print $2}' "$dconf")
+select_fg=$(awk '$1=="select_fg" {print $2}' "$dconf")
 
-set -euo pipefail
+nselect_bg=$(awk '$1=="nselect_bg" {print $2}' "$dconf")
+nselect_fg=$(awk '$1=="nselect_fg" {print $2}' "$dconf" )
 
-_path=$(dirname "$(realpath "$0")")
-[[ ! -f "${_path}/_dm-helper.sh" ]] && echo "No helper-script found"
-# shellcheck disable=SC1090,SC1091
-source "${_path}/_dm-helper.sh"
-# shellcheck disable=SC1090
-source "$(get_config)"
+font=$(grep "font " "$dconf" | cut -d' ' -f 2-)
+font_size=$(awk '$1=="font_size" {print $2}' "$dconf")
 
-function main() {
-    local _self
-    declare -A _scripts
+declare -a options=(
+    "Scripts"
+    "Change Background"
+    "Screenshot"
+    "Increase Opacity - alacritty"
+    "Decrease Opacity - alacritty"
+)
 
-    _self=$(basename "$0")
+choice=$(printf '%s\n' "${options[@]}" | dmenu -i -l 20 -nb "$nselect_bg" -nf "$nselect_fg" -sb "$select_bg" -sf "$select_fg" -fn "$font"-"$font_size" -p 'Select option> ')
 
-    while IFS= read -r -d '' script; do
-        echo "$script"
-        script_name="$(basename "${script}")"
-        [[ "${script_name}" == "${_self}" ]] && continue
-        _scripts[${script_name}]="${script}"
-    done< <(find "${_path}" -type f -not -path "$_path/colpicker_program/*" -not -name "_*" -not -name "*.md" -print0)
-
-    choice=$(printf '%s\n' "${!_scripts[@]}" | sort | ${DMENU} 'Run Script:' "$@")
-
-    if [ "${choice}" ]; then
-        bash "$(printf '%s\n' "${_scripts["${choice}"]}")" "$@"
-    else
-        echo "Program terminated." && exit 0
-    fi
-}
-
-[[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"
+case $choice in
+    "Scripts")
+        ~/.scripts/src/menu/list_scripts
+    ;;
+    "Change Background")
+        # ~/Scripts/wallpaper.sh
+    ;;
+    "Screenshot")
+        ~/.scripts/dmenu/dmscrot.sh
+    ;;
+    "Increase Opacity - alacritty")
+        ~/.scripts/src/menu/alacritty_opacity.sh -inc
+    ;;
+    "Decrease Opacity - alacritty")
+        ~/.scripts/src/menu/alacritty_opacity.sh -dec
+    ;;
+    *)
+        exit 1
+    ;;
+esac

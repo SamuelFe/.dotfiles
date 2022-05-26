@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/env bash
 
-DIR="$HOME/.config/Scripts/basic/icons"
+DIR="$HOME/.scripts/basic/cat"
 
 MAX_BRI=$(cat /sys/class/backlight/intel_backlight/max_brightness)
 CUR_BRI=$(cat /sys/class/backlight/intel_backlight/brightness)
@@ -23,66 +23,66 @@ case $1 in
     # echo $NEW_BRI
     if ((NEW_BRI < MAX_BRI)); then
         # echo "set.."
-        echo $NEW_BRI | tee /sys/class/backlight/intel_backlight/brightness
+        echo $NEW_BRI > /sys/class/backlight/intel_backlight/brightness
         if ((NEW_PER > 80)); then
             dunstify -a "Brightness" \
                 "Brightness" \
                 "Increase \nBrightness: " \
                 -h int:value:$NEW_PER \
                 -r 100 \
-                -i $DIR/brightness_7.svg
+                -i $DIR/brightness_7.png
         elif ((NEW_PER > 70)); then
             dunstify -a "Brightness" \
                 "Brightness" \
                 "Increase \nBrightness: " \
                 -h int:value:$NEW_PER \
                 -r 100 \
-                -i $DIR/brightness_6.svg
+                -i $DIR/brightness_6.png
         elif ((NEW_PER > 60)); then
             dunstify -a "Brightness" \
                 "Brightness" \
                 "Increase \nBrightness: " \
                 -h int:value:$NEW_PER \
                 -r 100 \
-                -i $DIR/brightness_5.svg
+                -i $DIR/brightness_5.png
         elif ((NEW_PER > 50)); then
             dunstify -a "Brightness" \
                 "Brightness" \
                 "Increase \nBrightness: " \
                 -h int:value:$NEW_PER \
                 -r 100 \
-                -i $DIR/brightness_4.svg
+                -i $DIR/brightness_4.png
         elif ((NEW_PER > 40)); then
             dunstify -a "Brightness" \
                 "Brightness" \
                 "Increase \nBrightness: " \
                 -h int:value:$NEW_PER \
                 -r 100 \
-                -i $DIR/brightness_3.svg
+                -i $DIR/brightness_3.png
         elif ((NEW_PER > 20)); then
             dunstify -a "Brightness" \
                 "Brightness" \
                 "Increase \nBrightness: " \
                 -h int:value:$NEW_PER \
                 -r 100 \
-                -i $DIR/brightness_2.svg
+                -i $DIR/brightness_2.png
         else
             dunstify -a "Brightness" \
                 "Brightness" \
                 "Increase \nBrightness: " \
                 -h int:value:$NEW_PER \
                 -r 100 \
-                -i $DIR/brightness_1.svg
+                -i $DIR/brightness_1.png
         fi
     else
         # echo "not set.."
-        echo $MAX_BRI | tee /sys/class/backlight/intel_backlight/brightness
+        echo $MAX_BRI > /sys/class/backlight/intel_backlight/brightness
         dunstify -a "Brightness" \
                 "Brightness" \
                 "Increase \nBrightness: " \
                 -h int:value:$NEW_PER \
                 -r 100 \
-                -i $DIR/brightness_7.svg
+                -i $DIR/brightness_7.png
     fi
     ;;
 -dec)
@@ -91,66 +91,66 @@ case $1 in
     # echo $NEW_BRI
     if ((NEW_BRI > MIN_BRI)); then
         # echo "set.."
-        echo $NEW_BRI | tee /sys/class/backlight/intel_backlight/brightness
+        echo $NEW_BRI > /sys/class/backlight/intel_backlight/brightness
         if ((NEW_PER > 80)); then
             dunstify -a "Brightness" \
                 "Brightness" \
                 "Decrease \nBrightness: " \
                 -h int:value:$NEW_PER \
                 -r 100 \
-                -i $DIR/brightness_7.svg
+                -i $DIR/brightness_7.png
         elif ((NEW_PER > 70)); then
             dunstify -a "Brightness" \
                 "Brightness" \
                 "Decrease \nBrightness: " \
                 -h int:value:$NEW_PER \
                 -r 100 \
-                -i $DIR/brightness_6.svg
+                -i $DIR/brightness_6.png
         elif ((NEW_PER > 60)); then
             dunstify -a "Brightness" \
                 "Brightness" \
                 "Decrease \nBrightness: " \
                 -h int:value:$NEW_PER \
                 -r 100 \
-                -i $DIR/brightness_5.svg
+                -i $DIR/brightness_5.png
         elif ((NEW_PER > 50)); then
             dunstify -a "Brightness" \
                 "Brightness" \
                 "Decrease \nBrightness: " \
                 -h int:value:$NEW_PER \
                 -r 100 \
-                -i $DIR/brightness_4.svg
+                -i $DIR/brightness_4.png
         elif ((NEW_PER > 40)); then
             dunstify -a "Brightness" \
                 "Brightness" \
                 "Decrease \nBrightness: " \
                 -h int:value:$NEW_PER \
                 -r 100 \
-                -i $DIR/brightness_3.svg
+                -i $DIR/brightness_3.png
         elif ((NEW_PER > 20)); then
             dunstify -a "Brightness" \
                 "Brightness" \
                 "Decrease \nBrightness: " \
                 -h int:value:$NEW_PER \
                 -r 100 \
-                -i $DIR/brightness_2.svg
+                -i $DIR/brightness_2.png
         else
             dunstify -a "Brightness" \
                 "Brightness" \
                 "Decrease \nBrightness: " \
                 -h int:value:$NEW_PER \
                 -r 100 \
-                -i $DIR/brightness_1.svg
+                -i $DIR/brightness_1.png
         fi
     else
         # echo "not set.."
-        echo $MIN_BRI | tee /sys/class/backlight/intel_backlight/brightness
+        echo $MIN_BRI > /sys/class/backlight/intel_backlight/brightness
         dunstify -a "Brightness" \
                 "Brightness" \
                 "Decrease \nBrightness: " \
                 -h int:value:$NEW_PER \
                 -r 100 \
-                -i $DIR/brightness_1.svg
+                -i $DIR/brightness_1.png
     fi
     ;;
 -get)
@@ -162,4 +162,4 @@ case $1 in
 esac
 
 # polybar ipc control
-polybar-msg hook brightness 1 
+#polybar-msg hook brightness 1 
