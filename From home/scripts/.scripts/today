@@ -1,0 +1,8 @@
+#!/bin/env bash
+
+now="$(date +'%A %d')"
+mounth="$(date +'%B')"
+
+printf "Close" | dmenu -p "Today: ${now^} de ${mounth^}"
+
+

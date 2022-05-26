@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+# Use this script like this: bm [Enter]
+# Type the indicated short-world to where you want to go
+# or select with arrow-keys and hit [Enter]
+
+BROWSER="qutebrowser"
+# BROWSER="brave-browser"
+
+declare -a notion_pages=(
+"Action Zone"
+"Command Center"
+"Computer"
+"Crisma"
+"Crisma Notes"
+"Matérias"
+"Vim"
+)
+
+declare -a urls=(
+"https://www.notion.so/samuelfernandes/Action-Zone-e59b5f939ec34890b577b24a9b2d1525"
+"https://www.notion.so/samuelfernandes/Command-Center-6af9a5243db9466baa42791070f561bc"
+"https://www.notion.so/samuelfernandes/Computer-3edf51e20c1e431bba27fdf983b9991b"
+"https://www.notion.so/samuelfernandes/Crisma-c58e6894594a4b1f919740ab91c10619"
+"https://www.notion.so/samuelfernandes/Notes-41e604a568a449878c2d193ab3201150"
+"https://www.notion.so/samuelfernandes/7563329773174a52b22a5f31c1116aa3?v=af3a01c050d440b0b1791acd82748891"
+"https://www.notion.so/samuelfernandes/Vim-cf410f78bacb4584b6b1744c483c7594"
+)
+
+notion_list=$(printf '%s\n' "${notion_pages[@]}")
+
+choice=$(printf '%s\n' "${notion_list}" | dmenu -i -l 20 -p 'Notion')
+
+echo "${choise}"
+
+if [ "$choice" ]; then
+	option=$(echo "${choice}") || exit
+else
+	echo "Program terminated." && exit 0
+fi
+
+len_notion_pages=${#notion_pages[@]}
+
+for (( i=0; i<$len_notion_pages; i++ ))
+do
+	if [ "$option" ==  "${notion_pages[$i]}" ]; then
+		$BROWSER ${urls[$i]}
+		exit 0
+	fi
+done
+
+echo "Program terminated." && exit 0
+
+
+
