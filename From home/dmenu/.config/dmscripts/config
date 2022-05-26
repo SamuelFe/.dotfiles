@@ -6,20 +6,15 @@
 
 # Defined variables, modify anything in quotes to your prefered software
 
-# DMENU="dmenu"
 DMENU="rofi -dmenu"
 
-# DMBROWSER="brave"
 DMBROWSER="qutebrowser"
 
-# DMTERM="konsole -e"
 DMTERM="alacritty -e"
 
 DMEDITOR="${DMTERM} nvim"
 
 # dm-logout
-# logout_locker='loginctl lock-session' # this worked for Kubuntu 20.01
-# logout_locker='dm-tool lock'
 logout_locker='.config/Scripts/i3lock/launch.sh'
 
 # dm-bookman 

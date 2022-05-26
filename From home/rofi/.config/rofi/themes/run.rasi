@@ -26,7 +26,7 @@ listview {
 
 entry {
     expand:     false;
-    width:      16em;
+    width:      10em;
 }
 
 element {

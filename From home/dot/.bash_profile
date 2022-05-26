@@ -28,8 +28,8 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 # includes the dmenu scripts into PATH
-if [ -d "$HOME/.dmenu_scripts/scripts" ] ; then # [ -d "path/to/dir" ] means "if directory exists"
-    export PATH="$PATH:$HOME/.dmenu_scripts/scripts"
+if [ -d "$HOME/.scripts" ] ; then # [ -d "path/to/dir" ] means "if directory exists"
+    export PATH="$PATH:$HOME/.scripts"
 fi
 
 # XDG VARIABLES
