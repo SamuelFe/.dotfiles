@@ -205,8 +205,8 @@ fi
 
 
 prompt -i "\n\t***************************************\n\t* Placing config files in your places *\n\t***************************************"
-(cd ~/.dotfiles/From\ root && sudo stow --target="/" *)
-(cd ~/.dotfiles/From\ home && stow --target="$HOME/" *)
+(cd ~/.dotfiles/FromRoot && sudo stow --target="/" *)
+(cd ~/.dotfiles/FromHome && stow --target="$HOME/" *)
 
 askForScriptProcedure
 
@@ -358,7 +358,7 @@ askForScriptProcedure
 
 ## SETTING UP GRUB THEME
 prompt -i "\n\t*************************\n\t* Setting up Grub theme *\n\t*************************"
-(cd ~/.dotfiles/From\ root/Grub\ Themes/usr/share/grub/themes/ && sudo ./install.sh)
+(cd ~/.dotfiles/FromRoot/GrubThemes/usr/share/grub/themes/ && sudo ./install.sh)
 
 errorNoteTaking
 
@@ -384,7 +384,7 @@ prompt -w "\n\t***************************************\n\t* DECRIPTION OF (MINOR
 read -r -p "Are you Samuel Fernandes? [y/n] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
 then
-    (cd ~/.dotfiles/From\ home/qutebrowser/.config/qutebrowser/ && gpg -d encrypted.gpg | tar x)
+    (cd ~/.dotfiles/FromHome/qutebrowser/.config/qutebrowser/ && gpg -d encrypted.gpg | tar x)
 fi
 
 errorNoteTaking
