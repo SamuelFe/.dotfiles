@@ -355,5 +355,8 @@ alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/mas
 # Unlock LBRY tips
 alias tips="lbrynet txo spend --type=support --is_not_my_input --blocking"
 
+# FZF configuration
+set fzf_fd_opts --hidden --exclude=.git
+
 ### SETTING THE STARSHIP PROMPT ###
 starship init fish | source

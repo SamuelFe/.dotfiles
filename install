@@ -382,7 +382,7 @@ sudo fc-cache -fv # for refreshing the font cache
 
 
 ## DECRYPTING (minor) PRIVATE THINGS
-prompt -w "\n\t***************************************\n\t* DECRIPTION OF (MINOR) PRIVATE FILES *\n\t***************************************"
+prompt -w "\n\t***************************************\n\t* DECRYPTION OF (MINOR) PRIVATE FILES *\n\t***************************************"
 read -r -p "Are you Samuel Fernandes? [y/n] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
 then
