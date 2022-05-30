@@ -56,7 +56,8 @@ declare -a OFFICIAL_packages_essential=(
     "pipewire-media-session"
     "youtube-dl"
     "pdfjs"                    # browser pdf viewer
-    "zathura"                  # pdf viewer
+    "zathura"                  # for pdf reading
+    "zathura-pdf-mupdf"        # zathura pdf complement
     "mpv"
     "mpd"
     "hwinfo"
@@ -71,7 +72,7 @@ declare -a OFFICIAL_packages_essential=(
     "xdo"                       # i3-master-stack dependency
     "fzf"                       # fuzzy finder, also fzf vim plugin dependency
     "fd"                        # aster and more colorful alternative to find
-    "bat"                       # smarter cat with syntax highlighting
+    "bat"                       # smarter cat with syntax highlighting, also using for man pages viewing
     "sxhkd"                     # hotkeys daemon
     "rofi-calc"                 # calculator with rofi
     "bc"                        # rofi-alacritty dependency
@@ -109,6 +110,7 @@ declare -a TOTORO_scripts_dependencies=(
 )
 
 declare -a AUR_packages_essential=(
+    "batsignal"                     # low battery warning
     "brave-bin"                     # browser
     "picom-git"                     # compositor
     "nerd-fonts-mononoki"

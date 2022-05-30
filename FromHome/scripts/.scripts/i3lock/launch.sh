@@ -1,3 +1,3 @@
 #!/bin/bash
 
-$HOME/.config/Scripts/i3lock/i3lock-fancy/lock.sh
+$HOME/.scripts/i3lock/i3lock-fancy/lock.sh

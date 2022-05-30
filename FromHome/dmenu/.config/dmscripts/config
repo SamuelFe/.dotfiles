@@ -59,6 +59,7 @@ confedit_list[qutebrowser]="$HOME/.config/qutebrowser/config.py"
 confedit_list[starship]="$HOME/.config/starship.toml"
 confedit_list[sxhkd]="$HOME/.config/sxhkd/sxhkdrc"
 confedit_list[vifm]="$HOME/.config/vifm/vifmrc"
+confedit_list[xava]="$HOME/.config/xava/config"
 confedit_list[zathura]="$HOME/.config/zathura/zathurarc"
 
 

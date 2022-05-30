@@ -126,6 +126,8 @@ set tree_width_percent=33
 set wrap_search=true
 bind browser backspace browser-up
 bind browser i toggle show_hidden
+bind browser left browser-up 
+bind browser right win-activate 
 bind browser space win-activate
 bind browser u win-update
 bind common ! push shell 
@@ -212,7 +214,11 @@ bind common z player-prev
 bind common { vol -1% -0
 bind common } vol -0 -1%
 fset 90s=date>=1990&date<2000
+fset baroque=genre="Baroque"
 fset classical=genre="Classical"
+fset film=genre="Film"
+fset frequent=play_count>5
+fset jazz=genre="Jazz"
 fset missing-tag=!stream&(artist=""|album=""|title=""|tracknumber=-1|date=-1)
 fset mp3=filename="*.mp3"
 fset ogg=filename="*.ogg"

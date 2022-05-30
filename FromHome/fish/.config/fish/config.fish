@@ -13,19 +13,18 @@ set -U fish_user_paths $HOME/.local/bin $HOME/Applications $fish_user_paths
 set fish_greeting                                 # Supresses fish's intro message
 set TERM "xterm-256color"                         # Sets the terminal type
 set EDITOR "nvim"                                 # $EDITOR use neovim
-set VISUAL "emacsclient -c -a emacs"              # $VISUAL use Emacs in GUI mode
 
 ### SET MANPAGER
 ### Uncomment only one of these!
 
 ### "bat" as manpager
-# set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
+set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
 ### "vim" as manpager
 # set -x MANPAGER '/bin/bash -c "nvim -MRn -c \"set buftype=nofile showtabline=0 ft=man ts=8 nomod nolist norelativenumber nonu noma\" -c \"normal L\" -c \"nmap q :qa<CR>\"</dev/tty <(col -b)"'
 
 ### "nvim" as manpager
-set -x MANPAGER "nvim -c 'set ft=man' -"
+#set -x MANPAGER "nvim -c 'set ft=man' -"
 
 ### SET EITHER DEFAULT EMACS MODE OR VI MODE ###
 function fish_user_key_bindings
@@ -135,7 +134,7 @@ function commits
     git log --author="$argv" --format=format:%ad --date=short | uniq -c | awk '{print $1}' | spark | lolcat
 end
 
-# Functions needed for !! and !$
+# Functions needed for !! and !$ (only work in emacs mode)
 function __history_previous_command
   switch (commandline -t)
   case "!"
@@ -230,7 +229,7 @@ end
 ### END OF FUNCTIONS ###
 
 
-### ALIASES ###
+### ALIASES AND ABREVIATIONS ###
 # \x1b[2J   <- clears tty
 # \x1b[1;1H <- goes to (1, 1) (start)
 
@@ -243,29 +242,24 @@ alias ...='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
+alias cc='cd ~/.config'
 alias la='ls -a'
 alias q='exit'
 
 # vim and emacs
-alias vim='nvim'
-alias v='nvim'
-alias em='/usr/bin/emacs -nw'
-alias emacs="emacsclient -c -a 'emacs'"
-alias doomsync="~/.emacs.d/bin/doom sync"
-alias doomdoctor="~/.emacs.d/bin/doom doctor"
-alias doomupgrade="~/.emacs.d/bin/doom upgrade"
-alias doompurge="~/.emacs.d/bin/doom purge"
+abbr vim 'nvim'
+abbr v 'nvim'
 
 # pacman and yay
-alias pacs='sudo pacman -S '
-alias pacsyu='sudo pacman -Syu'                  # update only standard pkgs
-alias pacsyy='sudo pacman -Syy'                # Refresh pkglist & update standard pkgs
-alias pacsyyu='sudo pacman -Syyu'                # Refresh pkglist & update standard pkgs
-alias yaysua='yay -Sua --noconfirm'              # update only AUR pkgs (yay)
-alias yays='yay -S '
-alias yaysyu='yay -Syu --noconfirm'              # update standard pkgs and AUR pkgs (yay)
-alias unlock='sudo rm /var/lib/pacman/db.lck'    # remove pacman lock
-alias cleanup='sudo pacman -Rns (pacman -Qtdq)' # remove orphaned packages
+abbr pacs 'sudo pacman -S '
+abbr pacsyu 'sudo pacman -Syu'                  # update only standard pkgs
+abbr pacsyy 'sudo pacman -Syy'                  # Refresh pkglist & update standard pkgs
+abbr pacsyyu 'sudo pacman -Syyu'                # Refresh pkglist & update standard pkgs
+abbr yaysua 'yay -Sua --noconfirm'              # update only AUR pkgs (yay)
+abbr yays 'yay -S '
+abbr yaysyu 'yay -Syu --noconfirm'              # update standard pkgs and AUR pkgs (yay)
+abbr unlock 'sudo rm /var/lib/pacman/db.lck'    # remove pacman lock
+abbr cleanup 'sudo pacman -Rns (pacman -Qtdq)'  # remove orphaned packages
 
 # get fastest mirrors
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
@@ -360,18 +354,6 @@ alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/mas
 
 # Unlock LBRY tips
 alias tips="lbrynet txo spend --type=support --is_not_my_input --blocking"
-
-### DTOS ###
-# Copy/paste all content of /etc/dtos over to home folder. A backup of config is created. (Be careful running this!)
-alias dtoscopy='[ -d ~/.config ] || mkdir ~/.config && cp -Rf ~/.config ~/.config-backup-(date +%Y.%m.%d-%H.%M.%S) && cp -rf /etc/dtos/* ~'
-# Backup contents of /etc/dtos to a backup folder in $HOME.
-alias dtosbackup='cp -Rf /etc/dtos ~/dtos-backup-(date +%Y.%m.%d-%H.%M.%S)'
-
-### RANDOM COLOR SCRIPT ###
-# Get this script from my GitLab: gitlab.com/dwt1/shell-color-scripts
-# Or install it from the Arch User Repository: shell-color-scripts
-#colorscript random
-
 
 ### SETTING THE STARSHIP PROMPT ###
 starship init fish | source

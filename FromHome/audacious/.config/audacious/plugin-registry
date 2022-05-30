@@ -609,7 +609,7 @@ domain audacious-plugins
 priority 2
 about 1
 config 1
-enabled 1
+enabled 0
 output /usr/lib/audacious/Output/alsa.so
 stamp 1642955037
 version 48
@@ -619,7 +619,7 @@ domain audacious-plugins
 priority 5
 about 1
 config 1
-enabled 0
+enabled 1
 output /usr/lib/audacious/Output/oss4.so
 stamp 1642955037
 version 48

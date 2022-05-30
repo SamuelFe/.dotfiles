@@ -112,7 +112,7 @@ color=$(convert "$image" -gravity center -crop 100x100+0+0 +repage -colorspace h
 
 if [[ $color -gt $value ]]; then #white background image and black text
     bw="black"
-    icon="$HOME/.config/Scripts/i3lock/i3lock-fancy/icons/lockdark.png"
+    icon="$HOME/.scripts/i3lock/i3lock-fancy/icons/lockdark.png"
     param=("--inside-color=0000001c" "--ring-color=0000003e"
         "--line-color=00000000" "--keyhl-color=ffffff80" "--ringver-color=ffffff00"
         "--separator-color=22222260" "--insidever-color=ffffff1c"
@@ -121,7 +121,7 @@ if [[ $color -gt $value ]]; then #white background image and black text
         "--date-color=ffffff00" "--layout-color=ffffff00")
 else #black
     bw="white"
-    icon="$HOME/.config/Scripts/i3lock/i3lock-fancy/icons/lock.png"
+    icon="$HOME/.scripts/i3lock/i3lock-fancy/icons/lock.png"
     param=("--inside-color=ffffff1c" "--ring-color=ffffff3e"
         "--line-color=ffffff00" "--keyhl-color=00000080" "--ringver-color=00000000"
         "--separator-color=22222260" "--insidever-color=0000001c"

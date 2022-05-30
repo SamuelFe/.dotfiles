@@ -1,6 +1,17 @@
 # Zathura configuration file
 # See man `man zathurarc'
 
+# mappings
+map u scroll half-up
+map d scroll half-down
+map D toggle_page_mode
+map i recolor
+map J zoom out
+map K zoom in
+
+# solving problem with hyperlinks
+set sandbox none
+
 # Open document in fit-width mode by default
 set adjust-open "best-fit"
 
@@ -47,7 +58,7 @@ set completion-fg "#E0E0E0" #0C
 set notification-bg "#90A959" #0B
 set notification-fg "#151515" #00
 
-set recolor "true"
+#set recolor "true"
 set recolor-lightcolor "#000000" #00
 set recolor-darkcolor "#E0E0E0" #06
 set recolor-reverse-video "true"
@@ -56,8 +67,5 @@ set recolor-keephue "true"
 
 set render-loading "false"
 set scroll-step 50
-unmap f
-map f toggle_fullscreen
-map [fullscreen] f toggle_fullscreen
 
 set selection-clipboard clipboard

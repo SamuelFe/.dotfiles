@@ -140,6 +140,9 @@ set expandtab                   " Use spaces instead of tabs.
 set smarttab                    " Be smart using tabs ;)
 set shiftwidth=4                " One <tab> == four spaces.
 set tabstop=4                   " One <tab> == four spaces.
+set spelllang=en_us,pt_br
+map <F2> :setlocal spell!<CR>
+" 'zg'/'zug' add/remove word to dictionary
 
 " => Mouse Scrolling
 set mouse=nicr

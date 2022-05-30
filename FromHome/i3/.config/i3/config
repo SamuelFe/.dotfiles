@@ -74,10 +74,10 @@ for_window [class="Audacious"][title="Album Art"] floating enable
 for_window [class="Audacious"] floating enable move position center
 for_window [class="Spotify"] floating enable resize set 1200 600 move position center
 for_window [class="wallpaper"] floating enable
-for_window [class="XAVA"] floating enable
+for_window [class="XAVA"] floating enable, sticky enable
 for_window [class="SimpleScreenRecorder"] floating enable
 for_window [class="feh"][title="timetable"] floating enable
-for_window [class="mpv"] floating enable resize set 1200 600 move position center
+for_window [class="mpv"] floating enable resize set 1000 500 move position center
 for_window [class="vlc"] floating enable move position center
 for_window [class="Vlc"] floating enable move position center
 for_window [class="(?i)tint2"] floating enable move position center
@@ -152,14 +152,7 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+f fullscreen toggle; exec notify-send "i3" "Fullscreen Mode" -i preferences-system-windows
 
 # change container layout (stacked, tabbed, toggle split)
-#bindsym $mod+s layout stacking; exec notify-send "i3" "Stacking Mode" -i preferences-system-windows
-#bindsym $mod+w layout tabbed; exec notify-send "i3" "Tab Mode" -i preferences-system-windows
-#bindsym $mod+e layout toggle split;  exec notify-send "i3" "Toggle Split" -i preferences-system-windows
 bindsym $mod+s layout toggle; exec notify-send "i3" "layout toggle"
-# workspace back and forth (with/without active container)
-# workspace_auto_back_and_forth yes
-bindsym $mod+apostrophe workspace back_and_forth 
-bindsym $mod+Shift+apostrophe move container to workspace back_and_forth; workspace back_and_forth
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle; exec notify-send "i3" "Floating on" -i preferences-system-windows
@@ -170,21 +163,27 @@ bindsym $mod+space focus mode_toggle
 # toggle sticky
 bindsym $mod+Shift+s sticky toggle; exec notify-send "i3" "Sticky toggle" -i preferences-system-windows
 
-# move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad; exec notify-send "i3" "Send to scratchpad" -i preferences-system-windows
-bindsym $mod+minus scratchpad show
+# workspace back and forth (with/without active container)
+# workspace_auto_back_and_forth yes
+bindsym $mod+Tab workspace back_and_forth 
+bindsym $mod+Shift+Tab move container to workspace back_and_forth; workspace back_and_forth
 
-bindsym $mod+Tab workspace next
-bindsym $mod+Shift+Tab workspace prev
+bindsym $mod+apostrophe workspace next
+bindsym $mod+Shift+apostrophe workspace prev
 
 ## SCRATCHPADS
-# Alacritty mod_next+Return
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad; exec notify-send "i3" "Send to scratchpad" -i preferences-system-windows
+bindsym $mod+minus [title="^(?!terminal_scratchpad$)"] scratchpad show
+
+
+# Alacritty mod_next+j
 for_window [title="terminal_scratchpad"] floating enable
 for_window [title="terminal_scratchpad"] resize set 1200 600
 for_window [title="terminal_scratchpad"] move scratchpad
 for_window [title="terminal_scratchpad"] border pixel 3
 exec --no-startup-id alacritty -t terminal_scratchpad -q
-bindsym $mod_next+Return [title="terminal_scratchpad"] scratchpad show; [title="terminal_scratchpad"] move position center
+bindsym $mod_next+j [title="terminal_scratchpad"] scratchpad show; [title="terminal_scratchpad"] move position center
 
 # default bar icons (don't change to use polybar)
 set $ws1 "1"
@@ -246,10 +245,10 @@ assign [class="discord" window_type="normal"] $ws8
 assign [class="TelegramDesktop" window_type="normal"] $ws8
 assign [class="whatsapp-nativefier-d40211" window_type="normal"] $ws8
 assign [class="Audacious" window_type="normal"] $ws10
-assign [class="XAVA"] $ws10
 assign [class="(?i)music"] $ws10
 assign [class="vlc"] $ws10
 assign [class="Vlc"] $ws10
+#assign [class="XAVA"] $ws10
 
 # Because didn't worked for Spotify
 for_window [class="Spotify"] move to workspace $ws10 

@@ -56,13 +56,12 @@ interceptor.register(filter_yt)
 config.bind('st', 'config-cycle tabs.show always switching') # switch
 config.bind('pw', 'spawn passmenu') # password
 config.bind('z', 'mode-enter passthrough') # also enters into Passthrough with 'z'
-#config.bind(',,', 'mode-enter normal', mode='insert') # didn't want to press Esc
-config.bind(',m', 'spawn umpv --ytdl-format=best {url}')                         # bye-bye youtube ads
 config.bind(',M', 'hint links userscript youtube_helper') #bye-bye youtube ads
-config.bind(';M', 'hint --rapid links spawn umpv --ytdl-format=best {hint-url}') # bye-bye youtube ads
 config.bind(',S', 'hint links spawn streamlink {hint-url} best') #bye-bye youtube ads
 config.bind(',y', 'spawn mpv {url}')                         # bye-bye youtube ads
 config.bind(',Y', 'hint links spawn mpv {hint-url}') #bye-bye youtube ads
+config.bind(',a', 'spawn alacritty -e youtube-dl -f "bestaudio/best" -ciw -o "%(title)s.%(ext)s" -v --extract-audio --audio-quality 0 --audio-format mp3 {url}')
+#config.bind(',,', 'mode-enter normal', mode='insert') # didn't want to press Esc
 
 
 # SWICHING ; AND :
