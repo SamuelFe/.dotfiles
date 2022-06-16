@@ -1,0 +1,89 @@
+#!/bin/env bash
+
+# shades logic
+# shade1 = (   r   ,    g   ,    b   )
+# shade2 = (11*r/10, 11*g/10, 11*b/10)
+# shade3 = (12*r/10, 12*g/10, 12*b/10)
+# shade4 = (13*r/10, 13*g/10, 13*b/10)
+# ...
+
+hex2rgb(){
+    if (( $counter < 1)); then
+        hexinput=`echo $1 | tr '[:lower:]' '[:upper:]'`  # uppercase-ing
+        a=`echo $hexinput | cut -c-2`
+        b=`echo $hexinput | cut -c3-4`
+        c=`echo $hexinput | cut -c5-6`
+        
+        RGB_SHADE[$counter,0]=`echo "ibase=16; $a" | bc`
+        RGB_SHADE[$counter,1]=`echo "ibase=16; $b" | bc`
+        RGB_SHADE[$counter,2]=`echo "ibase=16; $c" | bc`
+
+    else
+        hexinput=`echo $1 | tr '[:lower:]' '[:upper:]'` # uppercase-ing
+        a=`echo $hexinput | cut -c-2`
+        b=`echo $hexinput | cut -c3-4`
+        c=`echo $hexinput | cut -c5-6`
+        
+        tmp2=`echo "$((10 + counter))"`
+
+        RGB_SHADE[$counter,0]=`echo "ibase=16; $a" | bc`
+        tmp1=${RGB_SHADE[$counter,0]}
+        RGB_SHADE[$counter,0]=`echo "$((tmp1 * tmp2 / 10))"`
+
+        RGB_SHADE[$counter,1]=`echo "ibase=16; $b" | bc`
+        tmp1=${RGB_SHADE[$counter,1]}
+        RGB_SHADE[$counter,1]=`echo "$((tmp1 * tmp2 / 10))"`
+
+        RGB_SHADE[$counter,2]=`echo "ibase=16; $c" | bc`
+        tmp1=${RGB_SHADE[$counter,2]}
+        RGB_SHADE[$counter,2]=`echo "$((tmp1 * tmp2 / 10))"`
+    fi
+
+    counter=`echo "$((counter + 1))"`
+}
+
+rgb2hex(){
+    for var in "$@"; do
+        HEX_SHADE[$counter]+=$(printf '%x' "$var")
+    done
+
+    counter=`echo "$((counter + 1))"`
+}
+
+print_colors(){
+    for i in $(seq 0 1 7); do
+        echo ${HEX_SHADE[$i]}
+    done
+}
+
+##### MAIN #####
+
+HEX_COLOR=$1
+counter=0
+
+declare -A RGB_SHADE
+declare -a HEX_SHADE
+
+hex2rgb $HEX_COLOR
+hex2rgb $HEX_COLOR
+hex2rgb $HEX_COLOR
+hex2rgb $HEX_COLOR
+hex2rgb $HEX_COLOR
+hex2rgb $HEX_COLOR
+hex2rgb $HEX_COLOR
+hex2rgb $HEX_COLOR
+
+counter=0
+
+rgb2hex "${RGB_SHADE[0,0]}" "${RGB_SHADE[0,1]}" "${RGB_SHADE[0,2]}"
+rgb2hex "${RGB_SHADE[1,0]}" "${RGB_SHADE[1,1]}" "${RGB_SHADE[1,2]}"
+rgb2hex "${RGB_SHADE[2,0]}" "${RGB_SHADE[2,1]}" "${RGB_SHADE[2,2]}"
+rgb2hex "${RGB_SHADE[3,0]}" "${RGB_SHADE[3,1]}" "${RGB_SHADE[3,2]}"
+rgb2hex "${RGB_SHADE[4,0]}" "${RGB_SHADE[4,1]}" "${RGB_SHADE[4,2]}"
+rgb2hex "${RGB_SHADE[5,0]}" "${RGB_SHADE[5,1]}" "${RGB_SHADE[5,2]}"
+rgb2hex "${RGB_SHADE[6,0]}" "${RGB_SHADE[6,1]}" "${RGB_SHADE[6,2]}"
+rgb2hex "${RGB_SHADE[7,0]}" "${RGB_SHADE[7,1]}" "${RGB_SHADE[6,2]}"
+
+# printing the hex
+print_colors
+

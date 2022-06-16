@@ -16,7 +16,7 @@ font_size=$(awk '$1=="font_size" {print $2}' "$dconf")
 
 # Specifying a directory to save our screenshots.
 # Make sure the directory exists.
-SCROTDIR="$HOME/Pictures/Screenshots"
+SCROTDIR="$HOME/Pictures/screenshots"
 
 # An array of options to choose.
 # Note that options for monitor 1, 2 and 3 work only if you have

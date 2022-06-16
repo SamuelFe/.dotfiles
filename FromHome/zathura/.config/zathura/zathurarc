@@ -2,8 +2,8 @@
 # See man `man zathurarc'
 
 # mappings
-map u scroll half-up
-map d scroll half-down
+map u scroll full-up
+map d scroll full-down
 map D toggle_page_mode
 map i recolor
 map J zoom out

@@ -1,12 +1,13 @@
-#!/bin/env bash
-#xwallpaper --maximize ~/.wallpapers/battery/battery_1.png # startup progress
-#sleep 0.5
-#xwallpaper --maximize ~/.wallpapers/battery/battery_2.png # startup progress
-#sleep 0.5
-#xwallpaper --maximize ~/.wallpapers/battery/battery_3.png # startup progress
-#sleep 0.5
-#xwallpaper --maximize ~/.wallpapers/battery/battery_4.png # startup progress
-#sleep 0.5
-#xwallpaper --maximize ~/.wallpapers/battery/battery_5.png # startup progress
-#sleep 0.5
-nitrogen --restore -b
+#!/bin/sh
+
+wal -R &
+sxhkd & # hotkeys daemon
+flameshot & # screenshots
+setxkbmap -model abnt2 -layout br -variant abnt2 & # fixes my keyboard layout
+load_polybar &
+picom --experimental-backends &
+pkill dunst; sudo dunst & # notifications
+xss-lock --transfer-sleep-lock -- i3lock --nofork & # lock
+nm-applet & # for NetworkManager
+conky & # widget
+#nitrogen --restore -b

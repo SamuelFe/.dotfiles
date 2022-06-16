@@ -1,22 +1,10 @@
-#
-# ░██████╗░█████╗░███████╗███████╗  Samuel Fernandes
-# ██╔════╝██╔══██╗██╔════╝██╔════╝  https://github.com/SamuelFe
-# ╚█████╗░███████║█████╗░░█████╗░░
-# ░╚═══██╗██╔══██║██╔══╝░░██╔══╝░░
-# ██████╔╝██║░░██║██║░░░░░███████╗
-# ╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚══════╝  🆃🅷🅸🆂 🅸🆂 🅼🆈  🅸 3 🅲🅾🅽🅵🅸🅶.
-
-## Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 set $mod_next Mod1
 
-# FONTS
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block.
+floating_modifier $mod
+
 font xft:Iosevka Nerd Font 14
 
-## FLOATING MODIFIER
-floating_modifier $mod
 
 ## ORIENTATION FOR NEW WORKSPACES
 # default_orientation horizontal|vertical|auto
@@ -26,87 +14,64 @@ default_orientation auto
 # workspace_layout default|stacking|tabbed
 workspace_layout default
 
-## WINDOW TITLE ALIGNMENT
-# title_align left|center|right
-title_align center
-
-## DEFAULT BORDER STYLE FOR NEW WINDOWS
-# default_border normal|none|pixel
-# default_border normal|pixel <px>
-# default_floating_border normal|none|pixel
-# default_floating_border normal|pixel <px>
 default_border pixel 3
 default_floating_border none
 
 # HIDING BORDERS ADJACENT TO THE SCREEN EDGES
 # hide_edge_borders none|vertical|horizontal|both|smart
-hide_edge_borders smart
+#hide_edge_borders smart
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
 
-# print all window titles bold
-for_window [class=".*"] title_format "<b>%title</b>"
-
 # ARBITRARY COMMANDS FOR SPECIFIC WINDOWS (for_window)
 # for_window <criteria> <command>
-for_window [title="Save File"] floating enable resize set 1000 600 move position center 
-for_window [title="File Transfer*"] floating enable move position center
-for_window [class="conky"] border pixel 0 
-for_window [class="Nautilus"] floating enable move position center
+for_window [title="Save File"] floating enable, resize set 1000 600, move position center 
+for_window [title="File Transfer*"] floating enable, move position center
+for_window [class="discord"] floating enable, resize set 1000 600, move position center
+for_window [class="Nautilus"] floating enable, move position center
 for_window [class="Sxiv"] floating enable
-for_window [class="GLava"] floating enable move position center
-for_window [class="flameshot"] floating enable move position center
+for_window [class="GLava"] floating enable, move position center
+for_window [class="flameshot"] floating enable, move position center
 for_window [class="Gnome-calculator"] floating enable
-for_window [class="Gnome-calendar"] floating enable move position center
-for_window [class="Gnome-todo"] floating enable move position center
+for_window [class="Gnome-calendar"] floating enable, move position center
+for_window [class="Gnome-todo"] floating enable, move position center
 for_window [class="Lxappearance"] floating enable
 for_window [class="Pavucontrol"] floating enable
-for_window [class="Conky"] floating enable
-for_window [class="qt5ct"] floating enable sticky enable
-for_window [class="Qtconfig-qt4"] floating enable sticky enable
+for_window [class="qt5ct"] floating enable sticky, enable
+for_window [class="Qtconfig-qt4"] floating enable, sticky enable
 for_window [class="Audacious"] no_focus
-for_window [class="copyq"] floating enable move position center
-for_window [class="Ulauncher"] floating enable move position center
+for_window [class="copyq"] floating enable, move position center
+for_window [class="Ulauncher"] floating enable, move position center
 for_window [class="xpad"] floating enable
-for_window [class="conky"] floating enable
 for_window [class="Audacious"][title="Album Art"] floating enable 
-for_window [class="Audacious"] floating enable move position center
-for_window [class="Spotify"] floating enable resize set 1200 600 move position center
+for_window [class="Audacious"] floating enable, move position center
+for_window [class="Cairo-dock"] floating enable, resize set 400 30
+for_window [class="Spotify"] floating enable, resize set 1100 600, move position center
 for_window [class="wallpaper"] floating enable
-for_window [class="XAVA"] floating enable, sticky enable
+for_window [class="XAVA"] floating enable, sticky enable, border pixel 0
 for_window [class="SimpleScreenRecorder"] floating enable
 for_window [class="feh"][title="timetable"] floating enable
-for_window [class="mpv"] floating enable resize set 1000 500 move position center
-for_window [class="vlc"] floating enable move position center
-for_window [class="Vlc"] floating enable move position center
-for_window [class="(?i)tint2"] floating enable move position center
+for_window [class="mpv"] floating enable, resize set 1000 500 move position center
+for_window [class="vlc"] floating enable, move position center
+for_window [class="Vlc"] floating enable, move position center
+for_window [class="whatsapp-nativefier-d40211"] floating enable, resize set 800 600, move position center
+for_window [class="TelegramDesktop"] floating enable, resize set 800 600, move position center
+for_window [class="(?i)tint2"] floating enable, move position center
 for_window [class="(?i)lemonbar"] floating enable 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
 
-for_window[window_role="Dialog*"] focus
+for_window [window_role="Dialog*"] focus
 # for_window[window_type="normal"][class="(?i)firefox"] move container to workspace 1
 # print all window titles bold
 for_window [class=".*"] title_format "<b>%title</b>"
-#for_window [class=".*"][floating] move position center
+for_window [class=".*"][floating] move position center
 
-# DON’T FOCUS WINDOW UPON OPENING
-# no_focus <criteria>
-
-# for_window [class=".*"][floating] move position center
 popup_during_fullscreen leave_fullscreen
 
 # AUTOMATICALLY STARTING APPLICATIONS ON I3 STARTUP
-exec --no-startup-id $HOME/.scripts/basic/startup.sh # coffee wallpaper trick
-exec --no-startup-id sxhkd & # hotkeys daemon
-exec --no-startup-id flameshot # screenshots
-exec setxkbmap -model abnt2 -layout br -variant abnt2 # fixes my keyboard layout
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id picom --experimental-backends &
-exec_always --no-startup-id pkill dunst; sudo dunst # notifications
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork # lock
-exec --no-startup-id nm-applet # for NetworkManager
+exec_always --no-startup-id $HOME/.scripts/basic/startup.sh
 
 # FOR WORK WITH VIRTUALBOX
 # exec_always --no-startup-id picom --no-vsync -b # did this for working in virtualbox
@@ -144,10 +109,6 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split horizontally/vertically toggle
-#bindsym $mod+t split toggle; exec notify-send 'Tile horizontally/vertically toggle'
-# not using this because of master-stack-layout scripts I'm using
-
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle; exec notify-send "i3" "Fullscreen Mode" -i preferences-system-windows
 
@@ -165,11 +126,11 @@ bindsym $mod+Shift+s sticky toggle; exec notify-send "i3" "Sticky toggle" -i pre
 
 # workspace back and forth (with/without active container)
 # workspace_auto_back_and_forth yes
-bindsym $mod+Tab workspace back_and_forth 
-bindsym $mod+Shift+Tab move container to workspace back_and_forth; workspace back_and_forth
+bindsym $mod+apostrophe workspace back_and_forth 
+bindsym $mod+Shift+apostrophe move container to workspace back_and_forth; workspace back_and_forth
 
-bindsym $mod+apostrophe workspace next
-bindsym $mod+Shift+apostrophe workspace prev
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
 
 ## SCRATCHPADS
 # move the currently focused window to the scratchpad
@@ -274,17 +235,6 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # mode <name>
 #
 
-bindsym $mod+backslash mode "$apps"
-set $apps (1)qutebrowser, (2)nautilus
-mode "$apps" {
-        bindsym 1 exec qutebrowser
-        bindsym 2 exec nautilus
-
-        # exit system mode: "Enter" or "Escape"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-
 # Set shut down, restart and locking features
 bindsym $mod_next+Shift+l mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
@@ -333,20 +283,16 @@ mode "resize" {
 # SETTINGS FOR i3-gaps
 
 # Set inner/outer gaps
+# gaps [inner|outer|horizontal|vertical|top|left|bottom|right] <px>
+# workspace <ws> gaps [inner|outer|horizontal|vertical|top|left|bottom|right] <px>
 gaps inner 8
 gaps outer 8
+gaps top 40
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
 # gaps inner all set 10
 # gaps outer all plus 5
-
-# Smart gaps (gaps used if only more than one container on the workspace)
-# smart_gaps on
-
-# Smart borders (draw borders around container only if it is not the only container on this workspace)
-# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-#smart_borders on
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
@@ -386,13 +332,26 @@ mode "$mode_gaps_outer" {
 }
 
 # CHANGING COLORS
+## -> section commented to try pywal configuration
 # <colorclass> <border> <background> <text> <indicator> <child_border>
-client.focused          #44475a #282a36 #F8F8F2 #282a36 #44475a
-client.focused_inactive #44475a #21222c #F8F8F2 #21222c #44475a
-client.unfocused        #44475a #21222c #6272a4 #21222c #282a36
-client.urgent           #44475a #FF5555 #F8F8F2 #FF5555 #FF5555
-client.placeholder      #44475a #282A36 #F8F8F2 #282A36 #44475a
-client.background       #F8F8F2
+#client.focused          #44475a #282a36 #F8F8F2 #282a36 #44475a
+#client.focused_inactive #44475a #21222c #F8F8F2 #21222c #44475a
+#client.unfocused        #44475a #21222c #6272a4 #21222c #282a36
+#client.urgent           #44475a #FF5555 #F8F8F2 #FF5555 #FF5555
+#client.placeholder      #44475a #282A36 #F8F8F2 #282A36 #44475a
+#client.background       #F8F8F2
+
+# PYWAL
+set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color2 #f0f0f0
+
+# class                 border  backgr. text indicator child_border
+client.focused          $bg     $bg     $fg  $bg       $bg
+client.focused_inactive $bg     $bg     $fg  $bg       $bg
+client.unfocused        $bg     $bg     $fg  $bg       $bg
+client.urgent           $bg     $bg     $fg  $bg       $bg
+client.placeholder      $bg     $bg     $fg  $bg       $bg
+client.background       $bg
 
 # Gaps
 # # You can also use any non-zero value if you'd like to have a border

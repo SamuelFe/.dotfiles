@@ -52,7 +52,8 @@ call vundle#begin('~/.vim/bundle')
 "{{ FZF }}
     Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }          " fuzzy searcher
     Plugin 'junegunn/fzf.vim'
-
+"{{ Pywal }}
+    Plugin 'dylanaraps/wal.vim'                                    "colors
 
 call vundle#end()            " required
 
@@ -186,6 +187,8 @@ highlight Number           guifg=#ff6c6b ctermfg=1    guibg=none    ctermbg=none
 highlight Function         guifg=#ff6c6b ctermfg=1    guibg=none    ctermbg=none  cterm=none
 highlight Visual           guifg=#dfdfdf ctermfg=1    guibg=#5b6268 ctermbg=none  cterm=none
 
+" -> changing the colors to pywal
+"colorscheme wal
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Abreviations

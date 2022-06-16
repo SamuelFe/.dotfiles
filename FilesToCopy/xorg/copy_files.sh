@@ -1,8 +1,6 @@
-#!/bin/env bash
+#!/bin/sh
 
 
-if [ -f /etc/X11/xorg.conf.d/30-touchpad.conf ]; then
-   sudo rm /etc/X11/xorg.conf.d/30-touchpad.conf
-fi
+[ -f /etc/X11/xorg.conf.d/30-touchpad.conf ] && sudo rm /etc/X11/xorg.conf.d/30-touchpad.conf
 
 sudo cp ./* /etc/X11/xorg.conf.d/

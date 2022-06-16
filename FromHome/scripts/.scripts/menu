@@ -30,7 +30,14 @@ case $choice in
         ~/.scripts/src/menu/list_scripts
     ;;
     "Change Background")
-        # ~/Scripts/wallpaper.sh
+        wal -s -i ~/Pictures/wallpapers/pywal/
+        pywal-discord -p ~/.config/discocss/
+        cp ~/.config/discocss/pywal-discord-default.theme.css ~/.config/discocss/custom.css
+        wal-telegram --wal
+        sleep 3 # gives time to pywal files to stop being used
+        load_polybar
+        ~/.config/conky/wal_conky
+
     ;;
     "Screenshot")
         ~/.scripts/screenshot

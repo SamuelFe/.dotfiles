@@ -16,7 +16,7 @@ b_CWAR=" \033[1;33m"                                # bold warning color
 FULL_INSTALLATON=true
 
 # --> Packages I installed as dependencies for https://github.com/elenapan/dotfiles AwesomeWM config
-# yay -S fortune-mod redshift mpc maim feh light-git inotify-tools
+# yay -S fortune-mod redshift mpc maim light-git inotify-tools #(uninstalled feh)
 
 ### ARRAYS
 declare -a OFFICIAL_packages_essential=(
@@ -76,19 +76,22 @@ declare -a OFFICIAL_packages_essential=(
     "sxhkd"                     # hotkeys daemon
     "rofi-calc"                 # calculator with rofi
     "bc"                        # rofi-alacritty dependency
+    "dash"                      # shell
+    "zsh"                       # shell
 )
 
 declare -a OFFICIAL_packages_not_essential=(
     "base-devel"
     "libreoffice-fresh"
     "telegram-desktop"
+    "conky"
     "discord"
     "discocss-git"
     "grub-customizer"
-    "visual-studio-code-bin"
     "vlc"
     "nautilus"                 # file manager 
 )
+    # removed "visual-studio-code-bin"
 
 declare -a DMENU_scripts_dependencies=(
     "jq"
@@ -123,6 +126,8 @@ declare -a AUR_packages_essential=(
     "sublime-text-4"
     "nordic-theme"
     "wget"
+    "pywal-discord-git"
+    "wal-telegram-git"
 )
 
 declare -a AUR_packages_not_essential=(
@@ -332,6 +337,8 @@ pip3 install i3ipc      # i3-master-stack dependency
 
 errorNoteTaking
 
+prompt -i "\n\t*********\n\t* PYWAL *\n\t*********"
+sudo pip3 install pywal
 
 ## DMENU
 prompt -i "\n\t********************\n\t* Installing Dmenu *\n\t********************"

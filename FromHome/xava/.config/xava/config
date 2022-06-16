@@ -26,7 +26,7 @@
 
 # Window width and height (in pixels)
 ; width = 1180
-height = 100
+height = 50
 
 # Fullscreen toggle
 ; fullscreen = false

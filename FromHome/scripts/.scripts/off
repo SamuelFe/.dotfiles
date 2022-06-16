@@ -1,10 +1,5 @@
- #!/usr/bin/env bash
+#!/usr/bin/env bash
  
-# Set with the flags "-e", "-u","-o pipefail" cause the script to fail
-# if certain things happen, which is a good thing.  Otherwise, we can
-# get hidden bugs that are hard to discover.
-set -euo pipefail
-
 _path="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd "$(dirname "$(readlink "${BASH_SOURCE[0]}" || echo ".")")" && pwd)"
 if [[  -f "${_path}/src/_dm-helper.sh" ]]; then
   # shellcheck disable=SC1090,SC1091
@@ -55,8 +50,6 @@ main() {
     case $choice in
         'Logout')
             if [[ "$(echo -e "Yes\nNo" | ${DMENU} -theme "run.rasi" -i -p "${choice}?" "${@}" )" == "Yes" ]]; then
-#                qdbus org.kde.ksmserver /KSMServer logout 0 3 3 # this is for kubuntu 20.01
-
                 for manager in "${MANAGERS[@]}"; do
                     killall "${manager}" || output "Process ${manager} was not running."
                 done

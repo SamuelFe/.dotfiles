@@ -1,34 +1,80 @@
 #!/usr/bin/env bash
 
-DIR="$HOME/.config/polybar"
+dir="$HOME/.config/polybar"
+themes=(`ls --hide="launch.sh" $dir`)
 
-# Terminate already running bar instances
-killall -q polybar
+launch_bar() {
+	# Terminate already running bar instances
+	killall -q polybar
 
-# Wait until the processes have been shut down
-while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+	# Wait until the processes have been shut down
+	while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-# Launch the bar according to the wm you are using
-t=$(xrandr -q | grep -c " connected ")
+	# Launch the bar
+	if [[ "$style" == "hack" || "$style" == "cuts" ]]; then
+		polybar -q top -c "$dir/$style/config.ini" &
+		polybar -q bottom -c "$dir/$style/config.ini" &
+	elif [[ "$style" == "pwidgets" ]]; then
+		bash "$dir"/pwidgets/launch.sh --main
+	elif [[ "$style" == "samuel_shades" ]]; then
+        ~/.config/polybar/samuel_shades/scripts/shades_wal.sh
+        polybar -q main -c "$dir/$style/config.ini" &
+	else
+		polybar -q main -c "$dir/$style/config.ini" &	
+	fi
+}
 
-if [ "$t" = "2" ]; then
-    # two monitors setup
-    if [ "$DESKTOP_SESSION" = "i3" ]; then
-        # launch two bars
-        echo "Launching two Polybar for i3 dual monitor."
-        polybar -q main -c "$DIR"/config_i3.ini &
-        polybar -q main2 -c "$DIR"/config_i3_2.ini &
-    fi
+if [[ "$1" == "--material" ]]; then
+	style="material"
+	launch_bar
+
+elif [[ "$1" == "--shades" ]]; then
+	style="shades"
+	launch_bar
+
+elif [[ "$1" == "--hack" ]]; then
+	style="hack"
+	launch_bar
+
+elif [[ "$1" == "--docky" ]]; then
+	style="docky"
+	launch_bar
+
+elif [[ "$1" == "--cuts" ]]; then
+	style="cuts"
+	launch_bar
+
+elif [[ "$1" == "--shapes" ]]; then
+	style="shapes"
+	launch_bar
+
+elif [[ "$1" == "--blocks" ]]; then
+	style="blocks"
+	launch_bar
+
+elif [[ "$1" == "--colorblocks" ]]; then
+	style="colorblocks"
+	launch_bar
+
+elif [[ "$1" == "--forest" ]]; then
+	style="forest"
+	launch_bar
+
+elif [[ "$1" == "--totoro" ]]; then
+	style="totoro"
+	launch_bar
+
+elif [[ "$1" == "--samuel_shades" ]]; then
+	style="samuel_shades"
+	launch_bar
+
 else
-    # one monitor setup
-    if [ "$DESKTOP_SESSION" = "i3" ]; then
-        echo "Launching Polybar for i3."
-        polybar -q main -c "$DIR"/config_i3.ini &
-    elif [ "$DESKTOP_SESSION" = "openbox" ]; then
-        echo "Launching Polybar for openbox single monitor."
-        polybar -q main -c "$DIR"/config_openbox.ini &
-    elif [ "$DESKTOP_SESSION" = "bspwm" ]; then
-        echo "Launching Polybar for bspwm single mpnitor."
-        polybar -q main -c "$DIR"/config_bspwm.ini &
-    fi
+	cat <<- EOF
+	Usage : launch.sh --theme
+		
+	Available Themes :
+	--blocks    --colorblocks    --cuts      --docky
+	--forest    --samuel_shades  --hack      --material
+	--shades    --shapes         --totoro
+	EOF
 fi

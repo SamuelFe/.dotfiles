@@ -45,6 +45,7 @@ bookmarks_list[speed - Speed Test]="https://www.speedtest.net/"
 confedit_editor="$DMEDITOR"
 declare -A confedit_list
 confedit_list[alacritty]="$HOME/.config/alacritty/alacritty.yml"
+confedit_list[aliases]="$HOME/.config/shell/aliases"
 confedit_list[bash]="$HOME/.bashrc"
 confedit_list[dmenu scripts]="$HOME/.config/dmscripts/config"
 confedit_list[dunst]="$HOME/.config/dunst/dunstrc"
@@ -61,6 +62,7 @@ confedit_list[sxhkd]="$HOME/.config/sxhkd/sxhkdrc"
 confedit_list[vifm]="$HOME/.config/vifm/vifmrc"
 confedit_list[xava]="$HOME/.config/xava/config"
 confedit_list[zathura]="$HOME/.config/zathura/zathurarc"
+confedit_list[zsh]="$HOME/.config/zsh/.zshrc"
 
 
 # translate script config
