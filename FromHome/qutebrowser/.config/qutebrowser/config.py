@@ -30,19 +30,27 @@ c.colors.webpage.bg = "#202124"
 c.auto_save.session = True
 
 # KEY BINDINGS
-# navigation
+# vim like online text editing
+config.bind('\\', 'mode-enter normal', mode='insert')
 config.bind('$', 'fake-key <End>')
 config.bind('0', 'fake-key <Home>')
+config.bind('I', 'fake-key <Home>;; mode-enter insert')
+config.bind('A', 'fake-key <End>;; mode-enter insert')
+config.bind('cw', 'fake-key <Ctrl-Delete>;; mode-enter insert')
+config.bind('cc', 'fake-key <Home><Shift-End><Delete>;; mode-enter insert')
+config.bind('c$', 'fake-key <Shift-End><Delete>;; mode-enter insert')
+# for Google Docs
+config.bind('*', 'fake-key <Ctrl-Shift-Right><Ctrl-b>')
+config.bind('_', 'fake-key <Ctrl-Shift-Right><Ctrl-i>')
 
+# navigation
 config.bind('st', 'config-cycle tabs.show always switching') # switch
 config.bind('z', 'mode-enter passthrough') # also enters into Passthrough with 'z'
-config.bind(',M', 'hint links userscript youtube_helper') #bye-bye youtube ads
+config.bind(',M', 'hint links userscript.youtube_helper') #bye-bye youtube ads
 config.bind(',S', 'hint links spawn streamlink {hint-url} best') #bye-bye youtube ads
 config.bind(',y', 'spawn mpv {url}')                         # bye-bye youtube ads
 config.bind(',Y', 'hint links spawn mpv {hint-url}') #bye-bye youtube ads
 config.bind(',a', 'spawn alacritty -e youtube-dl -f "bestaudio/best" -ciw -o "%(title)s.%(ext)s" -v --extract-audio --audio-quality 0 --audio-format mp3 {url}')
-config.bind('\\', 'mode-enter normal', mode='insert') # didn't want to press Esc
-
 
 # SWICHING ; AND :
 #set ';' for opening command prompt

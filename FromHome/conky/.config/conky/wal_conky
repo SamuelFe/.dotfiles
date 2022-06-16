@@ -1,0 +1,15 @@
+#!/bin/env bash
+
+# Color file
+PFILE="$HOME/.config/conky/conky.conf"
+
+# Source the pywal color file
+. "$HOME/.cache/wal/colors.sh"
+
+# Change colors
+sed -i -e "s/color0 =.*/color0 = '${color2:1}',/g" $PFILE
+sed -i -e "s/color1 =.*/color1 = '${background:1}',/g" $PFILE
+sed -i -e "s/own_window_colour =.*/own_window_colour = '${foreground:1}',/g" $PFILE
+
+
+

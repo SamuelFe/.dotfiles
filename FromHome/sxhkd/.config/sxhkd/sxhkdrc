@@ -1,0 +1,77 @@
+# sxhkd bindings
+super + b
+    ~/.config/sxhkd/bindings
+
+# dmenu
+alt + space
+    rofi -theme 'run.rasi' -show run
+#    ~/.scripts/dmenu/dmenu_pywal
+alt + d
+    rofi -theme 'drun.rasi' -show drun
+
+# terminal
+super + Return
+    alacritty
+
+# Lock screen
+super + F11
+    ~/.scripts/i3lock/launch.sh
+
+# Brightness
+{XF86MonBrightnessUp,XF86MonBrightnessDown}
+    ~/.scripts/basic/brightness-cat {-inc,-dec}
+
+# Audio
+{XF86AudioLowerVolume,XF86AudioRaiseVolume,XF86AudioMute,XF86AudioMicMute}
+    ~/.scripts/basic/{volume-cat -dec,volume-cat -inc,volume-cat -mute,mic}
+
+# MUSIC CONTROLS - only for cmus
+{XF86AudioPlay,XF86AudioStop,XF86AudioNext,XF86AudioPrev}
+    ~/.scripts/music/{play_pause,stop,next,prev}
+
+# xkill
+super + ctrl + x
+    notify-send "xkill" "Select an app to kill" -i dialog-error && xkill
+
+# toggle polybar state
+#super + m # using to make window master
+#    polybar-msg cmd toggle
+
+# screenshots
+Insert
+    maim -s | xclip -selection clipboard -t image/png
+super + Insert
+    flameshot gui
+super + shift + Print
+    flameshot gui -p ~/Pictures/Screenshots
+Print 
+	maim "$HOME/Pictures/Screenshots/scrot-full-$(date '+%Y-%m-%d-%H%M%S').png"
+
+# rofi launchers
+super + d
+    ~/.config/rofi/launchers/launch.sh
+super + Escape
+    ~/.config/rofi/powermenu/powermenu.sh
+super + u
+    ~/.config/rofi/shortcuts/launch.sh
+alt + Tab
+    ~/.config/rofi/app-switcher/app-switcher.sh
+
+# utilities
+alt + p
+    passmenu     # passwords
+super + ctrl + t
+    translate    # translator
+super + equal
+    rofi -theme 'cloud.rasi' -show calc -modi calc -no-show-match -no-sort -kb-a
+ccept-custom "Control+Return" -calc-command "echo -n '{result}'
+| xclip" # calculator
+XF86Launch2
+    menu # all dmenu scripts
+super + F1
+    confedit # edit config files
+
+## apps
+super + a
+    ~/.config/rofi/alacritty/rofi-alacritty
+
