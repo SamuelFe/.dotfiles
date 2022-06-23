@@ -16,12 +16,42 @@ font_size=$(awk '$1=="font_size" {print $2}' "$dconf")
 
 declare -a options=(
     "Scripts"
-    "Change Background"
+    "Change looks"
     "Screenshot"
     "Increase Opacity - alacritty"
     "Decrease Opacity - alacritty"
     "Tools"
 )
+
+declare -a looks_options=(
+    "Wallpaper"
+    "Colors"
+    "Wallpaper + Colors"
+)
+
+change_looks(){
+    choice=$(printf '%s\n' "${looks_options[@]}" | dmenu -i -l 20 -nb "$nselect_bg" -nf "$nselect_fg" -sb "$select_bg" -sf "$select_fg" -fn "$font"-"$font_size" -p 'Select option> ')
+
+    case $choice in
+        "Wallpaper")
+            $HOME/.scripts/src/menu/setbg
+        ;;
+        "Colors")
+        ;;
+        "Wallpaper + Colors")
+            wal -s -i ~/Pictures/wallpapers/pywal/
+            pywal-discord -p ~/.config/discocss/
+            cp ~/.config/discocss/pywal-discord-default.theme.css ~/.config/discocss/custom.css
+            wal-telegram --wal
+            sleep 3 # gives time to pywal files to stop being used
+            load_polybar
+            ~/.config/conky/wal_conky
+        ;;
+        *)
+            exit 1
+        ;;
+    esac
+}
 
 choice=$(printf '%s\n' "${options[@]}" | dmenu -i -l 20 -nb "$nselect_bg" -nf "$nselect_fg" -sb "$select_bg" -sf "$select_fg" -fn "$font"-"$font_size" -p 'Select option> ')
 
@@ -29,15 +59,8 @@ case $choice in
     "Scripts")
         ~/.scripts/src/menu/list_scripts
     ;;
-    "Change Background")
-        wal -s -i ~/Pictures/wallpapers/pywal/
-        pywal-discord -p ~/.config/discocss/
-        cp ~/.config/discocss/pywal-discord-default.theme.css ~/.config/discocss/custom.css
-        wal-telegram --wal
-        sleep 3 # gives time to pywal files to stop being used
-        load_polybar
-        ~/.config/conky/wal_conky
-
+    "Change looks")
+        change_looks
     ;;
     "Screenshot")
         ~/.scripts/screenshot

@@ -6,17 +6,10 @@
 
 set -euo pipefail
 _path="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd "$(dirname "$(readlink "${BASH_SOURCE[0]}" || echo ".")")" && pwd)"
-if [[  -f "${_path}/src/_dm-helper.sh" ]]; then
-  # shellcheck disable=SC1090,SC1091
-  source "${_path}/src/_dm-helper.sh"
-else
-  # shellcheck disable=SC1090
-  echo "No helper-script found"
-fi
+[  -f "${_path}/src/_dm-helper.sh" ] && . "${_path}/src/_dm-helper.sh" || echo "No helper-script found"
 
-# script will not hit this if there is no config-file to load
 # shellcheck disable=SC1090
-source "$(get_config)"
+. "$(get_config)"
 
 main() {
     # Running ps to get running processes and display in dmenu.
@@ -26,21 +19,21 @@ main() {
 
     # Nested 'if' statements.  The outer 'if' statement is what to do
     # when we select one of the 'selected' options listed in dmenu.
-    if [[ -n $selected ]]; then
+    if [ -n $selected ]; then
         # Piping No/Yes into dmenu as a safety measure, in case you
         # select a process that you don't actually want killed.
         answer="$(echo -e "No\nYes" | ${DMENU} -i -p "Kill $selected?" "$@")"
 
-        if [[ $answer == "Yes" ]]; then
+        if [ $answer = "Yes" ]; then
             selpid="$(awk '{print $1}' <<< "$selected")";
             kill -9 "$selpid"
         echo "Process $selected has been killed." && exit 0
         fi
 
-        if [[ $answer == "No" ]]; then
+        if [ $answer == "No" ]; then
         echo "Program terminated." && exit 0
         fi
     fi
 }
 
-[[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"
+[ "${BASH_SOURCE[0]}" = "${0}" ] && main "$@"

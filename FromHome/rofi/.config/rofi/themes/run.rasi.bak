@@ -6,12 +6,10 @@
 }
 
 window {
-    width:      98.7%;
+    width:      100%;
     anchor:     north;
     location:   north;
     padding:    3;
-    y-offset:   1.4%;
-    x-offset:   -1;
     children:   [ horibox ];
 }
 

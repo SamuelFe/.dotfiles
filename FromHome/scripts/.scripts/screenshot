@@ -1,5 +1,5 @@
 #!/bin/bash
-#
+
 # Description: Choose type of screenshot to take with maim.
 # Dependencies: dmenu, maim, tee, xdotool, xclip
 

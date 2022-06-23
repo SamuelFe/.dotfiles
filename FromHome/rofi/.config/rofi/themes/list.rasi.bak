@@ -1,8 +1,9 @@
 @import "colors_dark.rasi"
+@import "~/.cache/wal/colors-rofi-dark.rasi"
 
 * {
-    background-color:   @BG;
-    text-color:         @FG;
+    background-color:   @background;
+    text-color:         @foreground;
 }
 
 window {

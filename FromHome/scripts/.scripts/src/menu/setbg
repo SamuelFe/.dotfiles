@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+_path="$HOME/.scripts/src"
+[ -f "${_path}/_dm-helper.sh" ] && . "${_path}/_dm-helper.sh" || echo "No helper-script found"
+
+. "$(get_config)"
+
+
+
+# Set wallpaper using either xwallpaper or swaybf
+setbg() {
+    xwallpaper --stretch "$1"
+}
+
+main() {
+  choice="$(printf "Set\nRandom\nExit" | ${DMENU} "What would you like to do?")" 
+  case "$choice" in
+    "Set") 
+    wallpaper="$(sxiv -t -o "${setbg_dir}")"
+    echo "$wallpaper" > "$HOME"/.cache/wall
+    setbg "$wallpaper"
+    ;;
+    "Random")
+    valid_paper="No"
+    until [ "$valid_paper" = "Yes" ]; do
+      pidof "xwallpaper" && killall "xwallpaper" 
+      wallpaper="$(find "${setbg_dir}" -type f | shuf -n 1)"
+      setbg "$wallpaper" &
+      cp "$wallpaper" "$HOME/.cache/wall"
+      valid_paper="$(printf "Yes\nNo" | ${DMENU} "Do you like the new wallpaper?")"
+    done
+    ;;
+    "Exit") echo "Program terminated" && exit 1;;
+    *) err "Invalid choice";;
+  esac
+}
+
+[ "${BASH_SOURCE[0]}" = "${0}" ] && main "$@"

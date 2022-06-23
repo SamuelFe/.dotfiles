@@ -9,6 +9,21 @@ daemon_relative = '.config/qutebrowser/iqutefy.py'
 colors_absolute = os.path.join(home, colors_relative)
 daemon_absolute = os.path.join(home, daemon_relative)
 
+def best_white_or_black(col):
+    h = col.lstrip('#')
+
+    r = (int(h[0:2], 16))
+    g = (int(h[2:4], 16))
+    b = (int(h[4:6], 16))
+
+    if (r*0.299 + g*0.587 + b*0.114) > 186:
+        return "#000000"
+    else:
+        return "#ffffff"
+
+
+
+
 if os.path.isfile(colors_absolute):
     with open(colors_absolute) as colorfile:
         colors = json.load(colorfile)
@@ -282,7 +297,9 @@ if os.path.isfile(colors_absolute):
 
     # Foreground color of unselected even tabs.
     # Type: QtColor
-    c.colors.tabs.even.fg = colors['special']['foreground']
+    # selecting between black and white based on background color
+    fg = best_white_or_black(colors['special']['background'])
+    c.colors.tabs.even.fg = fg
 
     # Color for the tab indicator on errors.
     # Type: QtColor
@@ -311,15 +328,15 @@ if os.path.isfile(colors_absolute):
 
     # Foreground color of unselected odd tabs.
     # Type: QtColor
-    c.colors.tabs.odd.fg = colors['special']['foreground']
-
+    c.colors.tabs.odd.fg = fg
     # Background color of selected even tabs.
     # Type: QtColor
     c.colors.tabs.selected.even.bg = colors['colors']['color4']
 
     # Foreground color of selected even tabs.
     # Type: QtColor
-    c.colors.tabs.selected.even.fg = colors['special']['background']
+    fga = best_white_or_black(colors['colors']['color4'])
+    c.colors.tabs.selected.even.fg = fga
 
     # Background color of selected odd tabs.
     # Type: QtColor
@@ -327,7 +344,7 @@ if os.path.isfile(colors_absolute):
 
     # Foreground color of selected odd tabs.
     # Type: QtColor
-    c.colors.tabs.selected.odd.fg = colors['special']['background']
+    c.colors.tabs.selected.odd.fg = fga
 
     # Background color for webpages if unset (or empty to use the theme's
     # color)

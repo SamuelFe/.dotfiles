@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
  
 _path="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd "$(dirname "$(readlink "${BASH_SOURCE[0]}" || echo ".")")" && pwd)"
-if [[  -f "${_path}/src/_dm-helper.sh" ]]; then
+if [  -f "${_path}/src/_dm-helper.sh" ]; then
   # shellcheck disable=SC1090,SC1091
-  source "${_path}/src/_dm-helper.sh"
+  . "${_path}/src/_dm-helper.sh"
 else
   # shellcheck disable=SC1090
   echo "No helper-script found"
@@ -11,7 +11,7 @@ fi
 
 # script will not hit this if there is no config-file to load
 # shellcheck disable=SC1090
-source "$(get_config)"
+. "$(get_config)"
 
 # use notify-send if run in dumb term
 # TODO: add abillity to control from config.
@@ -49,7 +49,7 @@ main() {
     # What to do when/if we choose one of the options.
     case $choice in
         'Logout')
-            if [[ "$(echo -e "Yes\nNo" | ${DMENU} -theme "run.rasi" -i -p "${choice}?" "${@}" )" == "Yes" ]]; then
+            if [ "$(echo -e "Yes\nNo" | ${DMENU} -theme "run.rasi" -i -p "${choice}?" "${@}" )" = "Yes" ]; then
                 for manager in "${MANAGERS[@]}"; do
                     killall "${manager}" || output "Process ${manager} was not running."
                 done
@@ -62,21 +62,21 @@ main() {
             ${logout_locker}
             ;;
         'Reboot')
-            if [[ "$(echo -e "Yes\nNo" | ${DMENU} -theme "run.rasi" -i -p "${choice}?" "${@}" )" == "Yes" ]]; then
+            if [ "$(echo -e "Yes\nNo" | ${DMENU} -theme "run.rasi" -i -p "${choice}?" "${@}" )" = "Yes" ]; then
                 systemctl reboot
             else
                 output "User chose not to reboot." && exit 0
             fi
             ;;
         'Shutdown')
-            if [[ "$(echo -e "Yes\nNo" | ${DMENU} -theme "run.rasi" -i -p "${choice}?" "${@}" )" == "Yes" ]]; then
+            if [ "$(echo -e "Yes\nNo" | ${DMENU} -theme "run.rasi" -i -p "${choice}?" "${@}" )" = "Yes" ]; then
                 systemctl poweroff
             else
                 output "User chose not to shutdown." && exit 0
             fi
             ;;
         'Suspend')
-            if [[ "$(echo -e "Yes\nNo" | ${DMENU} -theme "run.rasi" -i -p "${choice}?" "${@}" )" == "Yes" ]]; then
+            if [ "$(echo -e "Yes\nNo" | ${DMENU} -theme "run.rasi" -i -p "${choice}?" "${@}" )" = "Yes" ]; then
                 systemctl suspend
             else
                 output "User chose not to suspend." && exit 0
@@ -94,4 +94,4 @@ main() {
 
 }
 
-[[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"
+[ "${BASH_SOURCE[0]}" = "${0}" ] && main "$@"

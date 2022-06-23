@@ -1,5 +1,5 @@
 #!/bin/bash
-#
+
 # Use: Show a cheat sheet for shortcuts of programs.
 # Dependencies: dmenu
 

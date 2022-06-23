@@ -124,6 +124,11 @@ source ~/.config/zsh/plugins_configs/zsh-syntax-highlighting.zsh
 ### BINDINGS
 bindkey -s '\el' 'ls^M'
 bindkey 'jj' vi-cmd-mode
+bindkey -s '\er' './run^M'
+
+### case-insensitive zsh
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 ### PROGRAM SPECIFIC
 # Starship prompt

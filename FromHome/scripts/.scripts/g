@@ -1,10 +1,10 @@
-#!/bin/env bash
+#!/bin/sh
 
 # Use this script like this: g what_you_want_to_search in_google
 
 BROWSER="qutebrowser"
 
-search=("$*")
+search=$*
 
 URL='https://google.com/search?q='
 

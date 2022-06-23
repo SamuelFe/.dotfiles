@@ -2,14 +2,14 @@
 
 * {
   al:   #00000000;
-  bg:   #0a111eFF;
-  bga:  #AB3458FF;
-  fga:  #a17b80FF;
-  fg:   #e7b1b8FF;
-  ac:   #8F2D4EFF;
+  bg:   #0c0c0dFF;
+  bga:  #DF6368FF;
+  fga:  #a58c89FF;
+  fg:   #edc8c4FF;
+  ac:   #A25A67FF;
 
-  bg1:   #bc3960FF;
-  bg2:   #cd3e69FF;
-  bg3:   #de4372FF;
-  bg4:   #ef487bFF;
+  bg1:   #f56c72FF;
+  bg2:   #ff767cFF;
+  bg3:   #ff8087FF;
+  bg4:   #ff8a91FF;
 }

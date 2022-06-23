@@ -1,6 +1,7 @@
 # default apps
 export DESKTOP_SESSION=i3
 export EDITOR=nvim
+export VISUAL="alacritty -e"
 export SUDO_EDITOR=/usr/bin/nvim
 export TERMINAL=alacritty
 export BROWSER=brave

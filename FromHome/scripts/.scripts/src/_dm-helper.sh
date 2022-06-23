@@ -9,7 +9,7 @@
 
 set -euo pipefail
 
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
     echo "This is a helper-script it does not do anything on its own."
     exit 1
 fi
@@ -55,17 +55,17 @@ check_updated_config() {
   local _base_file
   local _config_file
   _base_file=-1
-  [[ -f /etc/dmscripts/config ]] && _base_file="/etc/dmscripts/config"
+  [ -f /etc/dmscripts/config ] && _base_file="/etc/dmscripts/config"
   _local_conf="$(get_local_config)"
-  [[ -f "${_local_conf}/config" ]] && _base_file=${_local_conf}/config
+  [ -f "${_local_conf}/config" ] && _base_file=${_local_conf}/config
   _config_file=$(get_config)
 
-  [[ "${_config_file}" == "${_base_file}" ]] && return
+  [ "${_config_file}" = "${_base_file}" ] && return
 
   _config_file_revision=$(grep "^_revision=" "${_config_file}")
   _base_file_revision=$(grep "^_revision=" "${_base_file}")
 
-  if [[ ! "${_config_file_revision}" == "${_base_file_revision}" ]] ; then
+  if [ ! "${_config_file_revision}" == "${_base_file_revision}" ] ; then
     diff -y "${_config_file}" "${_base_file}" | less
     echo  "${_config_file}  > ${_base_file}"
     echo  "New revision of the configuration detected, please review and set ${_base_file_revision} in ${_config_file} when done"
@@ -85,8 +85,6 @@ err () {
 
 xmlgetnext () {
   local IFS='>'
-  # we need to mangle backslashes for this to work
-  # shellcheck disable=SC2162
   read -d '<' TAG VALUE
 }
 

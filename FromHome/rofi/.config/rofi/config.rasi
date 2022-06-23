@@ -5,7 +5,7 @@ configuration {
     display-run: "";
     display-calc: "Calculate: ";
     drun-display-format: "{icon} {name}";
-    font: "JetBrainsMono Nerd Font Medium 10";
+    font: "JetBrainsMono Nerd Font Medium 9";
     icon-theme: "papirus-icon-theme";
     application-fallback-icon: "~/.config/icons/general_app.png";
     fixed-num-lines: false;

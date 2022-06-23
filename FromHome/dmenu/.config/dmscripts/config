@@ -24,11 +24,8 @@ logout_locker='.config/Scripts/i3lock/launch.sh'
 sounds_dir="${HOME}/Music/Ambient Sounds"
 
 # dm-setbg
-# setbg_dir="${HOME}/.wallpapers"
-
-# dm-maim
-# maim_dir="${HOME}/Screenshots"
-# maim_file_prefix="maim"
+setbg_dir="${HOME}/Pictures/wallpapers/pywal"
+use_imv=0
 
 # bookmarks
 declare -A bookmarks_list
@@ -58,6 +55,7 @@ confedit_list[polybar]="$HOME/.config/polybar/config_i3.ini"
 confedit_list[powerline]="$HOME/.config/powerline-shell/config.json"
 confedit_list[qutebrowser]="$HOME/.config/qutebrowser/config.py"
 confedit_list[starship]="$HOME/.config/starship.toml"
+confedit_list[startup]="$HOME/.scripts/basic/startup.sh"
 confedit_list[sxhkd]="$HOME/.config/sxhkd/sxhkdrc"
 confedit_list[vifm]="$HOME/.config/vifm/vifmrc"
 confedit_list[xava]="$HOME/.config/xava/config"
@@ -81,5 +79,3 @@ translation_list[Portuguese -> French]="pt -> fr"
 translation_list[Portuguese -> English]="pt -> en"
 translation_list[French -> Portuguese]="fr -> pt"
 translation_list[English -> Portuguese]="en -> pt"
-
-_revision=17

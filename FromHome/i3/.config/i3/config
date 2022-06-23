@@ -59,6 +59,7 @@ for_window [class="whatsapp-nativefier-d40211"] floating enable, resize set 800 
 for_window [class="TelegramDesktop"] floating enable, resize set 800 600, move position center
 for_window [class="(?i)tint2"] floating enable, move position center
 for_window [class="(?i)lemonbar"] floating enable 
+for_window [class="ASi.py"] floating enable 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
 

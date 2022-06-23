@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/bin/sh
 
 SRC=$HOME/.scripts/src/colpicker_program
 

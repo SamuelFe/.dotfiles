@@ -1,9 +1,9 @@
-#!/bin/env bash
+#!/bin/sh
 
 # Use this script like this: y what_you_want_to_search in_youtube
 BROWSER="qutebrowser"
 
-search=("$*")
+search=$*
 
 URL='https://www.youtube.com/results?search_query='
 

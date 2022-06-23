@@ -31,7 +31,7 @@ c.auto_save.session = True
 
 # KEY BINDINGS
 # vim like online text editing
-config.bind('\\', 'mode-enter normal', mode='insert')
+#config.bind('\\', 'mode-enter normal', mode='insert')
 config.bind('$', 'fake-key <End>')
 config.bind('0', 'fake-key <Home>')
 config.bind('I', 'fake-key <Home>;; mode-enter insert')

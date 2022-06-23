@@ -1,13 +1,13 @@
-#!/usr/bin/env bash
+#!/bin/env bash
 
 # Set with the flags "-e", "-u","-o pipefail" cause the script to fail
 # if certain things happen, which is a good thing.  Otherwise, we can
 # get hidden bugs that are hard to discover.
 set -euo pipefail
 _path="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd "$(dirname "$(readlink "${BASH_SOURCE[0]}" || echo ".")")" && pwd)"
-if [[  -f "${_path}/src/_dm-helper.sh" ]]; then
+if [  -f "${_path}/src/_dm-helper.sh" ]; then
   # shellcheck disable=SC1090,SC1091
-  source "${_path}/src/_dm-helper.sh"
+  . "${_path}/src/_dm-helper.sh"
 else
   # shellcheck disable=SC1090
   echo "No helper-script found"
@@ -15,7 +15,7 @@ fi
 
 # script will not hit this if there is no config-file to load
 # shellcheck disable=SC1090
-source "$(get_config)"
+. "$(get_config)"
 
 main() {
   # Clean options array making sure that the files exist
@@ -23,7 +23,7 @@ main() {
   # As this is loaded from other file it is technically not defined
   # shellcheck disable=SC2154
   for i in "${!confedit_list[@]}"; do
-    [[ -f ${confedit_list["${i}"]} ]] && _clean_list["${i}"]=${confedit_list["${i}"]}
+    [ -f ${confedit_list["${i}"]} ] && _clean_list["${i}"]=${confedit_list["${i}"]}
   done
 
   # Piping the above array (cleaned) into dmenu.
@@ -41,4 +41,4 @@ main() {
   fi
 }
 
-[[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"
+[ "${BASH_SOURCE[0]}" = "${0}" ] && main "$@"

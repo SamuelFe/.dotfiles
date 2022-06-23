@@ -71,6 +71,8 @@ alias jctl="journalctl -p 3 -xb"
 # the terminal rickroll
 alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
 
+# specific gtk theme for applications
+alias gnuradio-companion="GTK_THEME=Raleigh gnuradio-companion"
 
 
 
